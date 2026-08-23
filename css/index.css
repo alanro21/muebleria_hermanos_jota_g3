@@ -1,0 +1,511 @@
+* { box-sizing: border-box; }
+
+/* Tipografía primaria: Inter (stack de sistema). Usada para texto del cuerpo y elementos de interfaz. */
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
+  font-weight: 400; /* Regular (400): peso para texto principal */
+  font-size: 16px; /* Tamaño base recomendado: 12pt ≈ 16px */
+  background: #F5E6D3; /* Alabastro cálido: fondo principal */
+  color: #1f1f1f;
+  line-height: 1.6; /* Altura de línea recomendada para legibilidad */
+}
+
+a {
+ color: inherit;
+ text-decoration: none;
+}
+
+img {
+ display: block;
+ max-width: 100%;
+}
+
+.container {
+ width: min(1100px, calc(100% - 32px));
+ margin: 0 auto;
+}
+
+/* Cabecera: diseño mobile-first. Agrupa marca y navegación en columna en dispositivos pequeños. */
+header {
+ background: #F5E6D3;
+ border-bottom: 1px solid #e8ddd0; /* Separador: borde inferior del header */
+ position: sticky;
+ top: 0;
+ z-index: 10;
+}
+
+.header-inner {
+ display: flex;
+ flex-direction: column; /* Móvil: marca sobre navegación para orden vertical */
+ align-items: flex-start;
+ gap: 12px;
+ padding: 10px 0;
+}
+
+.brand {
+ display: flex;
+ align-items: center;
+ gap: 12px;
+}
+
+.brand-link {
+ display: inline-flex;
+ align-items: center;
+ gap: 12px;
+}
+
+.logo {
+ width: 48px; /* Tamaño del logotipo en móvil (px) */
+ height: 48px;
+ display: block;
+ object-fit: contain;
+}
+
+.brand h1 {
+  margin: 0;
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif; /* Tipografía secundaria: Playfair para títulos editoriales */
+  font-weight: 700; /* Bold (700): peso recomendado para encabezados principales */
+  text-transform: uppercase; /* Aplicar mayúsculas para la marca principal */
+  letter-spacing: 0.1em;
+  font-size: 1.25rem;
+  color: #A0522D;
+}
+
+nav {
+  display: block;
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+nav a {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 500; /* Medium (500): peso para elementos de navegación y controles */
+  color: #A0522D; /* Siena tostado: enlaces principales de marca */
+  transition: color 0.2s ease;
+}
+
+@media (min-width: 621px) {
+  nav ul { gap: 28px; }
+}
+
+
+nav a:hover,
+nav a:focus {
+ color: #87A96B; /* Verde salvia: acento sustentable en interacción */
+}
+
+/* Hero: sección principal; diseño mobile-first con una columna en dispositivos pequeños */
+.hero {
+ background: linear-gradient(190deg, #C47A6D, #F5E6D3 45%, #D4A437);
+ padding: 40px 0 36px; /* Espaciado vertical optimizado para móvil */
+}
+
+.hero-inner {
+ display: grid;
+ grid-template-columns: 1fr; /* Grid: 1 columna en móvil */
+ align-items: center;
+ gap: 24px;
+}
+
+.eyebrow {
+  display: inline-block;
+  background: rgba(160, 82, 45, 0.08);
+  color: #A0522D; /* Siena tostado: microcopy principal */
+  border: 1px solid rgba(160, 82, 45, 0.18);
+  border-radius: 999px;
+  padding: 7px 12px;
+  font-size: 12px; /* Tamaño para leyendas y microtexto (≈9pt) */
+  font-weight: 300; /* Light (300): peso para textos secundarios */
+  letter-spacing: 0.02em; /* Espaciado ligero para claridad */
+  text-transform: uppercase;
+}
+
+.hero h2 {
+  margin: 18px 0 14px;
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif; /* Títulos principales: Playfair Display para encabezados */
+  font-weight: 700; /* Bold (700): peso para títulos principales */
+  text-transform: uppercase; /* Estilo editorial */
+  letter-spacing: 0.1em; /* Espaciado para mayúsculas */
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  line-height: 1.1;
+  color: #A0522D;
+}
+
+.hero p {
+ margin: 0 0 24px;
+ max-width: 60ch;
+ color: #5a5148; /* Color de texto secundario para cuerpo y héroe */
+ font-size: 1.05rem;
+}
+
+.cta-group {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 14px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 18px;
+  border-radius: 999px;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 500; /* Medium */
+  text-transform: uppercase; /* guía para CTAs */
+  letter-spacing: 0.08em;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+ background: #A0522D; /* Siena tostado: CTA principal de marca */
+ color: #fff;
+}
+
+.btn-secondary {
+ background: transparent;
+ border-color: #A0522D; /* Siena tostado: borde de CTA secundario */
+ color: #A0522D; /* Siena tostado: texto de énfasis */
+}
+
+.hero-card {
+ background: rgba(245, 230, 211, 0.7);
+ border: 1px solid #e8ddd0; /* Borde de tarjeta: separación y contorno ligero */
+ border-radius: 22px;
+ padding: 18px;
+ box-shadow: 0 20px 40px rgba(80, 56, 41, 0.08);
+}
+
+.hero-visual {
+ min-height: 260px; /* más pequeño en móvil */
+ border-radius: 18px;
+ background: linear-gradient(160deg, #C47A6D, #F5E6D3 55%, #D4A437);
+ position: relative;
+ overflow: hidden;
+}
+
+.hero-visual::before,
+.hero-visual::after {
+ display: none; /* eliminadas las formas decorativas */
+}
+
+
+
+/* Fotos dentro del hero (posicionadas para composición) */
+.hero-photo {
+ position: absolute;
+ border-radius: 12px;
+ box-shadow: 0 12px 30px rgba(15, 10, 5, 0.14);
+ object-fit: cover;
+ max-width: none;
+ will-change: transform;
+ z-index: 0; /* fotos por debajo del label */
+}
+
+.hero-photo--left {
+ left: 14px;
+ top: 14px;
+ width: 56%;
+}
+
+.hero-photo--right {
+ right: 14px;
+ top: 14px; /* movida arriba a la derecha en móvil */
+ width: 40%;
+}
+
+.floating-label {
+ position: absolute;
+ right: 12px;
+ bottom: 12px;
+ background: rgba(255, 255, 255, 0.95);
+ border: 1px solid #e8ddd0; /* Borde: contorno ligero para etiquetas flotantes */
+ border-radius: 14px;
+ padding: 10px 12px;
+ box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+ z-index: 12; /* asegurar que esté por encima de las fotos */
+}
+
+.floating-label strong {
+ display: block;
+ font-size: 0.9rem;
+ color: #5a5148; /* antes --muted */
+}
+
+.floating-label span {
+ font-size: 1.25rem;
+ font-weight: 700;
+}
+
+main {
+ padding: 36px 0 32px;
+}
+
+section {
+ margin-top: 20px;
+}
+
+.section-header {
+ display: flex;
+ flex-direction: column; /* móvil */
+ align-items: flex-start;
+ gap: 12px;
+ margin-bottom: 16px;
+}
+
+.section-header h3 {
+  margin: 0;
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-weight: 400; /* Playfair Regular para títulos elegantes */
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 1.4rem;
+  color: #A0522D;
+}
+
+.section-header a {
+ color: #87A96B; /* Verde salvia: enlace de sección con acento sustentable */
+ font-weight: 700;
+}
+
+.products-grid {
+ display: grid;
+ grid-template-columns: 1fr; /* móvil: 1 columna */
+ gap: 18px;
+}
+
+.product-card {
+ background: #fffdf9; /* Color de panel: fondo de tarjetas */
+ border: 1px solid #e8ddd0; /* Borde de tarjeta: separación sutil */
+ border-radius: 18px;
+ overflow: hidden;
+ box-shadow: 0 10px 25px rgba(52, 34, 22, 0.04);
+}
+
+.product-image {
+ height: 180px;
+ display: block;
+ background: linear-gradient(135deg, #d7c0ab, #b99874 52%, #7d654d);
+}
+
+.product-body {
+ padding: 14px 14px 16px;
+}
+
+.product-tag {
+ display: inline-block;
+ padding: 4px 8px;
+ border-radius: 999px;
+ background: #f3e4d1;
+ color: #A0522D; /* Siena tostado: etiquetas de marca */
+ font-size: 0.72rem;
+ font-weight: 700;
+ margin-bottom: 10px;
+}
+
+.product-card h4 {
+ margin: 0 0 8px;
+ font-size: 1.1rem;
+}
+
+.product-card p {
+ margin: 0 0 12px;
+ color: #5a5148; /* Color de texto secundario para descripciones */
+ font-size: 0.95rem;
+}
+
+.product-meta {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ gap: 12px;
+ font-weight: 700;
+}
+
+.product-price {
+ color: #A0522D; /* Siena tostado: precio y elementos destacados */
+}
+
+footer {
+ background: #F5E6D3;
+ border-top: 1px solid #D4A437;
+ padding: 24px 0;
+}
+
+.footer-inner {
+ display: flex;
+ flex-direction: column;
+ gap: 12px;
+ align-items: flex-start;
+}
+
+.footer-left,
+.footer-right {
+ width: 100%;
+}
+
+.footer-right {
+ display: flex;
+ justify-content: flex-start;
+}
+
+.site-address {
+ font-style: normal;
+ color: #A0522D;
+ font-size: 0.95rem;
+ line-height: 1.5;
+ margin: 0;
+ display: flex;
+ flex-wrap: wrap;
+ gap: 0.2rem 0.8rem;
+ align-items: center;
+ justify-content: flex-start;
+ text-align: left;
+}
+
+.address-brand,
+.address-line {
+ display: inline-block;
+}
+
+.address-brand {
+ width: 100%;
+ font-weight: 600;
+}
+
+.site-copyright {
+ margin: 0;
+ color: #A0522D;
+ font-size: 0.95rem;
+ font-weight: 500;
+ letter-spacing: 0.02em;
+}
+
+/* Footer layout for larger screens */
+@media (min-width: 901px) {
+ .footer-inner {
+   flex-direction: row;
+   align-items: flex-end;
+   justify-content: space-between;
+   gap: 20px;
+ }
+
+ .footer-left,
+ .footer-right {
+   width: auto;
+ }
+
+ .footer-right {
+   justify-content: flex-end;
+ }
+
+ .site-address {
+   align-items: center;
+   justify-content: flex-end;
+   text-align: right;
+ }
+
+ .address-brand {
+   width: auto;
+ }
+}
+
+/* Medias: primero tablet */
+@media (min-width: 621px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .section-header {
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+  }
+
+  .hero-inner {
+    gap: 32px;
+  }
+
+  .hero-visual {
+    min-height: 320px;
+  }
+
+  /* Ajustes de composición de fotos en tablet */
+  .hero-photo--left {
+    width: 60%;
+    left: 18px;
+    top: 18px;
+  }
+
+  .hero-photo--right {
+    width: 36%;
+    right: 14px; /* anclada al borde derecho del contenedor */
+    top: 18px; /* movida arriba en tablet */
+  }
+
+  .logo {
+    width: 56px;
+    height: 56px;
+  }
+
+  .header-inner {
+    padding: 12px 0;
+  }
+}
+
+/* Escritorio */
+@media (min-width: 901px) {
+  .header-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 84px;
+  }
+
+  .hero-inner {
+    grid-template-columns: 1.3fr 1fr;
+    gap: 40px;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+  }
+
+  .hero {
+    padding: 72px 0 56px;
+  }
+
+  /* Ajustes de composición para escritorio */
+  .hero-photo--left {
+    width: 62%;
+    left: 22px;
+    top: 22px;
+    transform: rotate(-2deg);
+  }
+
+  .hero-photo--right {
+    width: 34%;
+    right: 14px; /* anclada al borde derecho del contenedor */
+    top: 22px; /* movida arriba en escritorio */
+    transform: rotate(4deg);
+  }
+
+  main {
+    padding: 52px 0 48px;
+  }
+
+  .footer-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

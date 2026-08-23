@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mueblería Hermanos Jota | Inicio</title>
+    <link rel="stylesheet" href="css/index.css" />
+    <!-- Favicon: SVG tomado de img/logo.svg; incluir PNG fallback si se requiere -->
+    <link rel="icon" href="img/logo.svg" type="image/svg+xml" />
+    <!-- Fallback PNG: usado por navegadores que no interpretan correctamente SVG -->
+    <link rel="icon" href="img/logo.png" type="image/png" />
+  </head>
+  <body>
+
+    <!-- Header: marca y navegación principal (role=banner, accesible) -->
+    <header role="banner">
+      <div class="container header-inner">
+        <div class="brand" aria-label="Mueblería Hermanos Jota">
+          <a href="index.html" class="brand-link" aria-label="Mueblería Hermanos Jota">
+            <img src="img/logo.svg" alt="Logotipo Mueblería Hermanos Jota" class="logo" />
+            <h1>Mueblería Hermanos Jota</h1>
+          </a>
+        </div>
+
+        <nav role="navigation" aria-label="Menú principal">
+          <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="productos.html">Catalogo de productos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero: sección principal con título, descripción y CTAs. Diseño mobile-first. -->
+    <section class="hero" id="inicio" aria-labelledby="titulo-principal">
+      <div class="container hero-inner">
+        <div>
+          <span class="eyebrow">Tradición desde 1960</span>
+          <h2 id="titulo-principal">Diseño que perdura, hogares que inspiran.</h2>
+          <p>
+            Hermanos Jota es el redescubrimiento de un arte olvidado: 
+            crear muebles que no solo sirven una función, 
+            sino que alimentan el alma. Existimos en la intersección entre herencia e innovación, 
+            donde la calidez del optimismo de los años 60 se encuentra con la 
+            conciencia de la sustentabilidad del 2026. 
+            Cada pieza cuenta una historia de artesanía que honra el pasado mientras abraza el futuro.
+          </p>
+          <div class="cta-group">
+            <a class="btn btn-primary" href="productos.html">Ver productos</a>
+            <a class="btn btn-secondary" href="contacto.html">Consultá por tu proyecto</a>
+          </div>
+        </div>
+
+        <!-- Hero visual: imágenes posicionadas para composición y etiqueta flotante (z-index controlado) -->
+        <div class="hero-card" aria-label="Banner principal">
+          <div class="hero-visual">
+            <img src="img/Butaca Mendoza.png" alt="Butaca Mendoza" class="hero-photo hero-photo--left" />
+            <img src="img/Escritorio Costa.png" alt="Escritorio Costa" class="hero-photo hero-photo--right" />
+
+            <div class="floating-label">
+              <strong>Más de</strong>
+              <span>66 años</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Productos: grid de destacados. Contenedor #productGrid rellenado dinámicamente si se requiere -->
+    <main class="container">
+      <section id="productos" aria-labelledby="productos-title">
+        <div class="section-header">
+          <h3 id="productos-title">Productos destacados</h3>
+          <a href="productos.html">Ver catálogo completo</a>
+        </div>
+        <div id="productGrid" class="products-grid" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-inner">
+        <div class="footer-left">
+          <p class="site-copyright">© 2026 Hermanos Jota. Todos los derechos reservados.</p>
+        </div>
+        <div class="footer-right">
+          <address class="site-address">
+            <span class="address-brand">Hermanos Jota — Casa Taller</span>
+            <span class="address-line">Av. San Juan 2847</span>
+            <span class="address-line">C1232AAB — Barrio de San Cristóbal</span>
+            <span class="address-line">Ciudad Autónoma de Buenos Aires</span>
+            <span class="address-line">Argentina</span>
+          </address>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+</html>
