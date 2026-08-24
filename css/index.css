@@ -509,3 +509,142 @@ footer {
     justify-content: space-between;
   }
 }
+/*CONTACTO*/
+/*Layout principal de la página de contacto*/
+.contacto-main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  padding: 40px 0 60px;
+}
+
+@media (min-width: 901px) {
+  .contacto-main {
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+  }
+}
+
+/*Títulos de las secciones*/
+.contacto-seccion h2 {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 1.4rem;
+  color: #A0522D;
+  margin-top: 0;
+  margin-bottom: 28px;
+}
+
+/*SECCIÓN: SHOWROOM Y TALLER*/
+.showroom-card {
+  background: transparent; 
+  border-left: 3px solid #A0522D;
+  padding: 0 0 0 20px;
+}
+
+.showroom-info {
+  font-style: normal;
+  margin-bottom: 28px;
+}
+
+.showroom-nombre {
+  font-weight: 700;
+  color: #1f1f1f;
+  margin-bottom: 12px;
+  font-size: 1.05rem;
+}
+
+.showroom-direccion, 
+.showroom-horarios p {
+  margin: 6px 0;
+  color: #5a5148;
+  line-height: 1.6;
+}
+
+/*SECCIÓN: CONTACTO DIGITAL*/
+.tabla-contacto {
+  width: 100%;
+  border-collapse: collapse; 
+  background: transparent;
+  border-left: 3px solid #A0522D;
+}
+
+/*Mobile First: Celdas apiladas para mejor lectura en celulares*/
+.tabla-contacto th,
+.tabla-contacto td {
+  display: block;
+  width: 100%;
+  padding: 8px 20px;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.tabla-contacto th {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 600;
+  color: #1f1f1f;
+  padding-bottom: 0;
+}
+
+.tabla-contacto td {
+  padding-top: 4px;
+  border-bottom: 1px solid rgba(160, 82, 45, 0.15);
+  
+  overflow-wrap: anywhere; 
+  word-break: break-word; 
+}
+
+.tabla-contacto tbody tr {
+  background-color: transparent !important; 
+}
+
+.tabla-contacto tbody tr:last-child th,
+.tabla-contacto tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.tabla-contacto td a {
+  color: #5a5148;
+  transition: color 0.2s ease;
+}
+
+.tabla-contacto td a:hover,
+.tabla-contacto td a:focus {
+  color: #87A96B;
+}
+
+/*Tablet y pc, diseño de tabla tradicional*/
+@media (min-width: 621px) {
+  .tabla-contacto th,
+  .tabla-contacto td {
+    display: table-cell; 
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(160, 82, 45, 0.15);
+  }
+  
+  .tabla-contacto th {
+    width: 35%;
+  }
+}
+
+/*AJUSTE DE FOOTER*/
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header, main, footer {
+  width: 100%;
+  min-width: 0; 
+}
+
+main {
+  flex: 1; /*Empuja el footer hacia abajo*/
+}

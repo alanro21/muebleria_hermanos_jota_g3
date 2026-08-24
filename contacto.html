@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mueblería Hermanos Jota | Contacto</title>
+    <link rel="stylesheet" href="css/index.css" />
+    <!-- Favicon: SVG tomado de img/logo.svg; incluir PNG fallback si se requiere -->
+    <link rel="icon" href="img/logo.svg" type="image/svg+xml" />
+    <!-- Fallback PNG: usado por navegadores que no interpretan correctamente SVG -->
+    <link rel="icon" href="img/logo.png" type="image/png" />
+  </head>
+  <body>
+    <!-- Header: marca y navegación principal (role=banner, accesible) -->
+    <header role="banner">
+      <div class="container header-inner">
+        <div class="brand" aria-label="Mueblería Hermanos Jota">
+          <a href="index.html" class="brand-link" aria-label="Mueblería Hermanos Jota">
+            <img src="img/logo.svg" alt="Logotipo Mueblería Hermanos Jota" class="logo" />
+            <h1>Mueblería Hermanos Jota</h1>
+          </a>
+        </div>
+
+        <nav role="navigation" aria-label="Menú principal">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="productos.html">Catalogo de productos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+<!--CONTENIDO PRINCIPAL-->
+    <main class="container contacto-main" role="main">
+      <!--Showroom y Taller-->
+      <section class="contacto-seccion showroom-taller" aria-labelledby="titulo-showroom">
+        <h2 id="titulo-showroom">SHOWROOM Y TALLER</h2>
+        
+        <div class="showroom-card">
+          <address class="showroom-info">
+            <p class="showroom-nombre"><strong>Hermanos Jota — Casa Taller</strong></p>
+            <p class="showroom-direccion">
+              Av. San Juan 2847<br />
+              C1232AAB — Barrio de San Cristóbal<br />
+              Ciudad Autónoma de Buenos Aires<br />
+              Argentina
+            </p>
+          </address>
+
+          <div class="showroom-horarios">
+            <p><strong>Horarios:</strong></p>
+            <p>Lunes a Viernes: 10:00 - 19:00</p>
+            <p>Sábados: 10:00 - 14:00</p>
+          </div>
+        </div>
+      </section>
+
+      <!--Contacto Digital-->
+      <section class="contacto-seccion contacto-digital" aria-labelledby="titulo-contacto-digital">
+        <h2 id="titulo-contacto-digital">CONTACTO DIGITAL</h2>
+        
+        <table class="tabla-contacto">
+          <tbody>
+            <tr>
+              <th scope="row">Sitio web</th>
+              <td><a href="https://www.hermanosjota.com.ar" target="_blank" rel="noopener noreferrer">www.hermanosjota.com.ar</a></td>
+            </tr>
+            <tr>
+              <th scope="row">Email general</th>
+              <td><a href="mailto:info@hermanosjota.com.ar">info@hermanosjota.com.ar</a></td>
+            </tr>
+            <tr>
+              <th scope="row">Ventas</th>
+              <td><a href="mailto:ventas@hermanosjota.com.ar">ventas@hermanosjota.com.ar</a></td>
+            </tr>
+            <tr>
+              <th scope="row">Instagram</th>
+              <td><a href="https://instagram.com/hermanosjota_ba" target="_blank" rel="noopener noreferrer">@hermanosjota_ba</a></td>
+            </tr>
+            <tr>
+              <th scope="row">WhatsApp</th>
+              <td><a href="https://wa.me/541145678900" target="_blank" rel="noopener noreferrer">+54 11 4567-8900</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+<!--FIN CONTENIDO PRINCIPAL-->
+    <footer>
+      <div class="container footer-inner">
+        <div class="footer-left">
+          <p class="site-copyright">© 2026 Hermanos Jota. Todos los derechos reservados.</p>
+        </div>
+        <div class="footer-right">
+          <address class="site-address">
+            <span class="address-brand">Hermanos Jota — Casa Taller</span>
+            <span class="address-line">Av. San Juan 2847</span>
+            <span class="address-line">C1232AAB — Barrio de San Cristóbal</span>
+            <span class="address-line">Ciudad Autónoma de Buenos Aires</span>
+            <span class="address-line">Argentina</span>
+          </address>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+</html>
