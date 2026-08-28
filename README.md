@@ -12,4 +12,9 @@
 - JavaScript: Lógica del cliente, manejos de eventos y renderizado de catalogo.
 - Git y Github: Control de versiones del proyecto, colaboración del equipo y despliegue del sitio web.
 
-- **Integrantes:** Rinaudo Marco Eneas, Castillo Santiago, Jerez Luca, Segura Matheo, Rodriguez Agostini Alan Hernan
+## **Integrantes:** 
+- Rinaudo Marco Eneas 
+- Castillo Santiago
+- Jerez Luca 
+- Segura Matheo 
+- Rodriguez Agostini Alan Hernan
