@@ -5,6 +5,6 @@
 
 ## Tecnologías Utilizadas
 - HTML: Estructura semantica de las paginas.
-- Css: Estilo avanzado y enfoque Mobile First con media queries.
+- CSS: Estilo avanzado y enfoque Mobile First con media queries.
 - JavaScript: Lógica del cliente, manejos de eventos y renderizado de catalogo.
 - Git y Github: Control de versiones del proyecto, colaboración del equipo y despliegue del sitio web.
