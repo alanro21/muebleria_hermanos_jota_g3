@@ -1,7 +1,7 @@
 # Mueblería Hermanos Jota
 
 <p align="center">
-  <img src="img/logo.svg" width="550">
+  <img src="img/logo.svg" width="450">
 </p>
 
 - **Integrantes:** Rinaudo Marco Eneas, Castillo Santiago, Jerez Luca, Segura Matheo, Rodriguez Agostini Alan Hernan
