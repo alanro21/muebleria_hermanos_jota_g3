@@ -26,6 +26,7 @@
             <li><a href="index.html">Inicio</a></li>
             <li><a href="productos.html">Catalogo de productos</a></li>
             <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="#">Carrito (<span id="contador-carrito">0</span>)</a></li>
           </ul>
         </nav>
       </div>
@@ -88,8 +89,9 @@
       <!--Formulario de Contacto-->
       <section class="contacto-seccion formulario-contacto" aria-labelledby="titulo-formulario">
         <h2 id="titulo-formulario">ENVÍANOS UN MENSAJE</h2>
-        
-        <form action="#" method="POST" class="form-jota">
+        <div id="mensaje-exito" style="display: none;"></div>
+        <!--id="form-contacto"-->
+        <form id="form-contacto" action="#" method="POST" class="form-jota">
           <div class="form-row">
             <div class="form-group">
               <label for="nombre">Nombre completo</label>
@@ -105,7 +107,6 @@
             <label for="mensaje">Mensaje</label>
             <textarea id="mensaje" name="mensaje" rows="5" required placeholder="Contanos más sobre tu proyecto..."></textarea>
           </div>
-
           <!-- Usa las clases btn y btn-primary que ya existen en CSS -->
           <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
         </form>
@@ -128,6 +129,6 @@
         </div>
       </div>
     </footer>
-
+    <script src="js/contacto.js"></script>
   </body>
 </html>
