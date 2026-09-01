@@ -416,6 +416,49 @@ footer {
    width: auto;
  }
 }
+/*estilos para card de productos.html*/
+.productos-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+
+
+.producto-card {
+  background: #fffdf9;
+  border: 1px solid #e8ddd0;
+  border-radius: 18px;
+  overflow: hidden;
+  width:300px;
+  text-align: center;
+}
+
+.producto-card__image img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.producto-card__body {
+  padding: 16px;
+}
+
+.producto-card__title {
+  color: #a0522d;
+  font-family: "Playfair Display", serif;
+}
+
+.producto-card__price {
+  color: #5a5148;
+  font-weight: 700;
+}
+
+
+
+
+
 
 /* Medias: primero tablet */
 @media (min-width: 621px) {
