@@ -1,0 +1,181 @@
+* { box-sizing: border-box; }
+
+.producto-main {
+  padding: 24px 0 56px;
+}
+ 
+/* -------------------- Breadcrumb -------------------- */
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #5a5148;
+  margin-bottom: 24px;
+}
+ 
+.breadcrumb a {
+  color: #a0522d;
+  font-weight: 500;
+}
+ 
+.breadcrumb a:hover,
+.breadcrumb a:focus {
+  color: #87a96b;
+}
+ 
+.breadcrumb span[aria-current="page"] {
+  color: #5a5148;
+}
+ 
+/* -------------------- Layout principal: imagen + info -------------------- */
+.producto-detalle {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+ 
+.producto-detalle__media {
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #d7c0ab, #b99874 52%, #7d654d);
+  border: 1px solid #e8ddd0;
+}
+ 
+.producto-detalle__img {
+  width: 100%;
+  height: auto;
+  max-height: 520px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+ 
+.producto-detalle__info {
+  display: flex;
+  flex-direction: column;
+}
+ 
+.producto-detalle__categoria {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: #f3e4d1;
+  color: #a0522d;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+ 
+.producto-detalle__info h2 {
+  margin: 0 0 12px;
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  color: #1f1f1f;
+  line-height: 1.2;
+}
+ 
+.producto-detalle__precio {
+  margin: 0 0 18px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #a0522d;
+}
+ 
+.producto-detalle__descripcion {
+  margin: 0 0 24px;
+  color: #5a5148;
+  font-size: 1rem;
+  max-width: 60ch;
+}
+ 
+/* -------------------- Ficha técnica -------------------- */
+.producto-detalle__specs {
+  margin: 0 0 28px;
+  padding: 20px 0;
+  border-top: 1px solid #e8ddd0;
+  border-bottom: 1px solid #e8ddd0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+ 
+.spec-item dt {
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #a0522d;
+  margin-bottom: 4px;
+}
+ 
+.spec-item dd {
+  margin: 0;
+  color: #1f1f1f;
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+ 
+/* -------------------- Llamadas a la acción -------------------- */
+.producto-detalle__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+ 
+/* -------------------- Producto no encontrado -------------------- */
+.producto-no-encontrado {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 48px 16px;
+}
+ 
+.producto-no-encontrado h2 {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  color: #a0522d;
+  margin-bottom: 10px;
+}
+ 
+.producto-no-encontrado p {
+  color: #5a5148;
+  margin-bottom: 20px;
+}
+ 
+/* -------------------- Relacionados -------------------- */
+.producto-relacionados {
+  margin-top: 48px;
+}
+ 
+/* -------------------- Tablet -------------------- */
+@media (min-width: 621px) {
+  .producto-detalle__cta {
+    flex-wrap: nowrap;
+  }
+}
+ 
+/* -------------------- Escritorio -------------------- */
+@media (min-width: 901px) {
+  .producto-main {
+    padding: 40px 0 64px;
+  }
+ 
+  .producto-detalle {
+    grid-template-columns: 1.1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+ 
+  .producto-detalle__img {
+    max-height: 560px;
+  }
+.producto-detalle__specs {
+    flex-direction: column;
+  }
+}
+ 
