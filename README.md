@@ -17,4 +17,4 @@
 - Castillo Santiago
 - Jerez Luca 
 - Segura Matheo 
-- Rodriguez Agostini Alan Hernan
+- Rodriguez Agostini Alan Hernan :v
