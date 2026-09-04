@@ -1,46 +1,73 @@
+/* Variantes de color del detalle: Siena en claro, Alabastro en oscuro. */
+:root {
+  --color-primario: #A0522D;
+  --color-invertido: #F5E6D3;
+  --color-monocromatico: #000000;
+  --fuente-primaria: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fuente-secundaria: "Playfair Display", Georgia, "Times New Roman", serif;
+}
+
+/* Base del detalle: evita que el contenido exceda el ancho disponible. */
 * { box-sizing: border-box; }
 
+/* Espaciado general de la página de detalle. */
 .producto-main {
   padding: 24px 0 56px;
 }
  
-/* -------------------- Breadcrumb -------------------- */
+/* Breadcrumb: indica al usuario dónde se encuentra dentro del sitio. */
 .breadcrumb {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 8px;
+  min-width: 0;
+  line-height: 1.5;
+  font-family: var(--fuente-primaria);
   font-size: 0.85rem;
-  color: #5a5148;
+  color: var(--siena-tostado);
   margin-bottom: 24px;
 }
  
 .breadcrumb a {
-  color: #a0522d;
+  display: inline;
+  width: auto;
+  padding: 0;
+  border-radius: 0;
+  color: var(--siena-tostado);
   font-weight: 500;
+  text-align: left;
 }
  
 .breadcrumb a:hover,
 .breadcrumb a:focus {
-  color: #87a96b;
+  color: var(--verde-salvia);
 }
  
 .breadcrumb span[aria-current="page"] {
-  color: #5a5148;
+  color: var(--siena-tostado);
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
  
-/* -------------------- Layout principal: imagen + info -------------------- */
+/* Layout principal: combina la imagen del mueble con toda su información. */
 .producto-detalle {
   display: grid;
   grid-template-columns: 1fr;
   gap: 28px;
+  width: 100%;
+  padding: 28px;
+  border: 1px solid var(--vara-de-oro);
+  border-radius: 22px;
+  background: var(--alabastro-calido);
+  box-shadow: 0 12px 28px rgba(160, 82, 45, 0.1);
 }
  
 .producto-detalle__media {
   border-radius: 20px;
   overflow: hidden;
-  background: linear-gradient(135deg, #d7c0ab, #b99874 52%, #7d654d);
-  border: 1px solid #e8ddd0;
+  background: var(--siena-tostado);
+  border: 1px solid var(--vara-de-oro);
 }
  
 .producto-detalle__img {
@@ -62,8 +89,9 @@
   align-self: flex-start;
   padding: 5px 12px;
   border-radius: 999px;
-  background: #f3e4d1;
-  color: #a0522d;
+  background: var(--siena-tostado);
+  border: 1px solid var(--vara-de-oro);
+  color: var(--alabastro-calido);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -73,11 +101,11 @@
  
 .producto-detalle__info h2 {
   margin: 0 0 12px;
-  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-family: var(--fuente-secundaria);
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.1em;
   font-size: clamp(1.6rem, 4vw, 2.2rem);
-  color: #1f1f1f;
+  color: var(--siena-tostado);
   line-height: 1.2;
 }
  
@@ -85,51 +113,75 @@
   margin: 0 0 18px;
   font-size: 1.4rem;
   font-weight: 700;
-  color: #a0522d;
+  color: var(--siena-tostado);
 }
  
 .producto-detalle__descripcion {
   margin: 0 0 24px;
-  color: #5a5148;
+  color: var(--siena-tostado);
+  font-family: var(--fuente-primaria);
   font-size: 1rem;
+  line-height: 1.6;
   max-width: 60ch;
 }
  
-/* -------------------- Ficha técnica -------------------- */
+/* Ficha técnica: agrupa materiales, medidas y fabricación. */
 .producto-detalle__specs {
   margin: 0 0 28px;
   padding: 20px 0;
-  border-top: 1px solid #e8ddd0;
-  border-bottom: 1px solid #e8ddd0;
-  display: flex;
-  flex-direction: column;
+  border-top: 1px solid var(--vara-de-oro);
+  border-bottom: 1px solid var(--vara-de-oro);
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 16px;
+}
+
+.producto-detalle__specs .spec-item {
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(212, 164, 55, 0.45);
+  border-radius: 12px;
+  background: var(--alabastro-calido);
+}
+
+.producto-detalle__specs #btn-agregar {
+  align-self: flex-start;
+  margin-top: 4px;
+  cursor: pointer;
+  grid-column: 1 / -1;
 }
  
 .spec-item dt {
-  font-weight: 600;
+  font-family: var(--fuente-primaria);
+  font-weight: 500;
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: #a0522d;
+  color: var(--siena-tostado);
   margin-bottom: 4px;
 }
  
 .spec-item dd {
   margin: 0;
-  color: #1f1f1f;
+  color: var(--siena-tostado);
+  font-family: var(--fuente-primaria);
   font-size: 0.98rem;
-  line-height: 1.55;
+  line-height: 1.6;
 }
  
-/* -------------------- Llamadas a la acción -------------------- */
+/* Acciones: botones para consultar, volver y agregar al carrito. */
 .producto-detalle__cta {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
 }
+
+.producto-detalle__cta .btn {
+  flex: 1 1 220px;
+  text-align: center;
+}
  
-/* -------------------- Producto no encontrado -------------------- */
+/* Estado alternativo cuando el id de la URL no corresponde a un producto. */
 .producto-no-encontrado {
   grid-column: 1 / -1;
   text-align: center;
@@ -137,29 +189,33 @@
 }
  
 .producto-no-encontrado h2 {
-  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
-  color: #a0522d;
+  font-family: var(--fuente-secundaria);
+  color: var(--siena-tostado);
   margin-bottom: 10px;
 }
  
 .producto-no-encontrado p {
-  color: #5a5148;
+  color: var(--siena-tostado);
   margin-bottom: 20px;
 }
  
-/* -------------------- Relacionados -------------------- */
+/* Recomendaciones que aparecen debajo de la ficha principal. */
 .producto-relacionados {
   margin-top: 48px;
 }
  
-/* -------------------- Tablet -------------------- */
+/* Tablet: ajusta la disposición de los botones. */
 @media (min-width: 621px) {
   .producto-detalle__cta {
     flex-wrap: nowrap;
   }
+
+  .producto-detalle__cta .btn {
+    flex-basis: 0;
+  }
 }
  
-/* -------------------- Escritorio -------------------- */
+/* Escritorio: coloca imagen e información en dos columnas. */
 @media (min-width: 901px) {
   .producto-main {
     padding: 40px 0 64px;
@@ -168,13 +224,47 @@
   .producto-detalle {
     grid-template-columns: 1.1fr 1fr;
     gap: 48px;
+    padding: 40px;
     align-items: start;
   }
  
   .producto-detalle__img {
     max-height: 560px;
   }
-.producto-detalle__specs {
-    flex-direction: column;
+
+  .producto-detalle__specs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .breadcrumb {
+    display: flex;
+    gap: 4px 6px;
+    margin-bottom: 18px;
+    font-size: 0.75rem;
+  }
+
+  .breadcrumb a,
+  .breadcrumb span {
+    display: inline;
+    max-width: 100%;
+  }
+
+  .producto-detalle {
+    padding: 20px;
+  }
+
+  .producto-detalle__media {
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .producto-detalle__img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: contain;
   }
 }

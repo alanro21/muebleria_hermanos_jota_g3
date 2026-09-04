@@ -1,6 +1,7 @@
+// Espera a que exista todo el HTML antes de conectar el carrito y el formulario.
 document.addEventListener('DOMContentLoaded', () => {
 
-    //Carrito en header
+    // Muestra en el encabezado la cantidad guardada previamente.
     const contadorCarrito = document.getElementById('contador-carrito');
     let cantidadProductos = localStorage.getItem('cantidadCarrito') || 0;
     
@@ -8,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         contadorCarrito.textContent = cantidadProductos;
     }
 
-    //Formulario, dom y validaciones
+    // Reúne el formulario y el contenedor donde aparecerá la confirmación.
     const formulario = document.getElementById('form-contacto');
     const contenedorMensaje = document.getElementById('mensaje-exito');
 
@@ -36,15 +37,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            //SetTimeout
+            // Desactiva temporalmente el botón mientras se simula el envío.
             const botonSubmit = formulario.querySelector('button[type="submit"]');
             
-            //Cambio de texto
+            // Informa visualmente que el formulario está siendo procesado.
             botonSubmit.textContent = 'Enviando...';
             botonSubmit.style.opacity = '0.7';
             botonSubmit.disabled = true;
 
-            //simulacion de demora de red
+            // Simula una demora de red antes de mostrar el resultado final.
             setTimeout(() => {
                 
                 formulario.style.display = 'none';

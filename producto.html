@@ -11,6 +11,7 @@
     <link rel="icon" href="img/logo.png" type="image/png" />
   </head>
   <body>
+    <!-- La vista de detalle muestra un producto y recomendaciones relacionadas. -->
     <header role="banner">
       <div class="container header-inner">
         <div class="brand" aria-label="Mueblería Hermanos Jota">
@@ -20,16 +21,25 @@
           </a>
         </div>
 
-        <nav role="navigation" aria-label="Menú principal">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
+          <span class="menu-toggle__bar"></span>
+          <span class="menu-toggle__bar"></span>
+          <span class="menu-toggle__bar"></span>
+          <span class="sr-only">Abrir menú</span>
+        </button>
+
+        <nav id="menu-principal" role="navigation" aria-label="Menú principal">
           <ul>
             <li><a href="index.html">Inicio</a></li>
-            <li><a href="productos.html">Catálogo de productos</a></li>
+            <li><a href="productos.html">Catálogo</a></li>
             <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="#">Carrito (<span id="contador-carrito">0</span>)</a></li>
           </ul>
         </nav>
       </div>
     </header>
 
+    <!-- JavaScript completa este contenido según el id recibido en la URL. -->
     <main class="container producto-main" role="main">
       <nav class="breadcrumb" aria-label="Ruta de navegación">
         <a href="index.html">Inicio</a>
@@ -39,6 +49,7 @@
         <span id="breadcrumb-actual" aria-current="page">Producto</span>
       </nav>
 
+      <!-- Ficha principal: imagen, datos técnicos, precio y acciones. -->
       <article class="producto-detalle" id="productoDetalle" aria-live="polite">
         <div class="producto-detalle__media">
           <img id="producto-imagen" src="" alt="" class="producto-detalle__img" />
@@ -59,10 +70,9 @@
               <dt>Medidas</dt>
               <dd id="producto-medidas"></dd>
             </div>
-            <div class="spec-item">
-              <dt>Fabricación</dt>
-              <dd>Hecho a pedido en nuestro taller de San Cristóbal, Buenos Aires.</dd>
-            </div>
+            <button class="btn btn-secondary" type="button" id="btn-agregar">
+              Agregar al Carrito
+            </button>
           </dl>
 
           <div class="producto-detalle__cta">
@@ -72,6 +82,7 @@
         </div>
       </article>
 
+      <!-- Recomendaciones de productos de la misma categoría. -->
       <section class="producto-relacionados" id="relacionadosSection" aria-labelledby="relacionados-title">
         <div class="section-header">
           <h3 id="relacionados-title">También te puede interesar</h3>
@@ -80,24 +91,54 @@
       </section>
     </main>
 
-    <footer>
-      <div class="container footer-inner">
-        <div class="footer-left">
-          <p class="site-copyright">© 2026 Hermanos Jota. Todos los derechos reservados.</p>
-        </div>
-        <div class="footer-right">
-          <address class="site-address">
-            <span class="address-brand">Hermanos Jota — Casa Taller</span>
-            <span class="address-line">Av. San Juan 2847</span>
-            <span class="address-line">C1232AAB — Barrio de San Cristóbal</span>
-            <span class="address-line">Ciudad Autónoma de Buenos Aires</span>
-            <span class="address-line">Argentina</span>
-          </address>
-        </div>
+    <!-- Pie de página con información institucional, colecciones, contacto y newsletter. -->
+    <footer class="site-footer">
+      <div class="footer-columns">
+        <section class="footer-column footer-about">
+          <p class="footer-heading">Hermanos Jota</p>
+          <p>
+            Recuperamos el oficio de hacer<br>
+            muebles que acompañan la vida,<br>
+            uniendo la herencia del taller<br>
+            con una mirada actual y responsable.
+          </p>
+        </section>
+
+        <section class="footer-column footer-collections">
+          <p class="footer-heading">Colecciones destacadas</p>
+          <a href="productos.html">Dormitorio</a>
+          <a href="productos.html">Mesas</a>
+          <a href="productos.html">Sillas</a>
+          <a href="productos.html">Sofás</a>
+        </section>
+
+        <section class="footer-column">
+          <p class="footer-heading">Taller</p>
+          <p>Av. San Juan 2847</p>
+          <p>Barrio de San Cristóbal, Buenos Aires</p>
+          <p>Lunes a Viernes: 10:00 - 19:00</p>
+          <a href="mailto:info@hermanosjota.com.ar">
+            info@hermanosjota.com.ar
+          </a>
+        </section>
+
+      </div>
+
+      <div class="footer-bottom">
+        <span>
+          © 2024 Mueblería Hermanos Jota. Todos los derechos reservados.
+        </span>
+
+        <nav aria-label="Enlaces legales">
+          <a href="#">Términos y Condiciones</a>
+          <a href="#">Política de Privacidad</a>
+          <a href="#">Certificación Sustentable</a>
+        </nav>
       </div>
     </footer>
 
     <script src="js/producto.js"></script>
+    <script src="js/menu.js"></script>
     
   </body>
 </html>

@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mueblería Hermanos Jota | Inicio</title>
     <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/productos.css" />
     <!-- Favicon: SVG tomado de img/logo.svg; incluir PNG fallback si se requiere -->
     <link rel="icon" href="img/logo.svg" type="image/svg+xml" />
     <!-- Fallback PNG: usado por navegadores que no interpretan correctamente SVG -->
     <link rel="icon" href="img/logo.png" type="image/png" />
   </head>
-  <body>
+  <body class="home-page">
+    <!-- La página de inicio presenta la marca, el mensaje principal y destacados. -->
 
     <!-- Header: marca y navegación principal (role=banner, accesible) -->
     <header role="banner">
@@ -22,11 +24,19 @@
           </a>
         </div>
 
-        <nav role="navigation" aria-label="Menú principal">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
+          <span class="menu-toggle__bar"></span>
+          <span class="menu-toggle__bar"></span>
+          <span class="menu-toggle__bar"></span>
+          <span class="sr-only">Abrir menú</span>
+        </button>
+
+        <nav id="menu-principal" role="navigation" aria-label="Menú principal">
           <ul>
             <li><a href="#inicio">Inicio</a></li>
-            <li><a href="productos.html">Catalogo de productos</a></li>
+            <li><a href="productos.html">Catálogo</a></li>
             <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="#">Carrito (<span id="contador-carrito">0</span>)</a></li>
           </ul>
         </nav>
       </div>
@@ -39,12 +49,9 @@
           <span class="eyebrow">Tradición desde 1960</span>
           <h2 id="titulo-principal">Diseño que perdura, hogares que inspiran.</h2>
           <p>
-            Hermanos Jota es el redescubrimiento de un arte olvidado: 
-            crear muebles que no solo sirven una función, 
-            sino que alimentan el alma. Existimos en la intersección entre herencia e innovación, 
-            donde la calidez del optimismo de los años 60 se encuentra con la 
-            conciencia de la sustentabilidad del 2026. 
-            Cada pieza cuenta una historia de artesanía que honra el pasado mientras abraza el futuro.
+            En Hermanos Jota hacemos muebles para acompañar tu vida cotidiana.
+            Trabajamos con materiales nobles y oficio heredado, sumando soluciones
+            actuales para que cada pieza encuentre su lugar y dure muchos años.
           </p>
           <div class="cta-group">
             <a class="btn btn-primary" href="productos.html">Ver productos</a>
@@ -60,7 +67,7 @@
 
             <div class="floating-label">
               <strong>Más de</strong>
-              <span>66 años</span>
+              <span>Más de seis décadas</span>
             </div>
           </div>
         </div>
@@ -68,39 +75,166 @@
     </section>
 
     <!-- Productos: grid de destacados. Contenedor #productGrid rellenado dinámicamente si se requiere -->
+    <!-- Esta sección se completa desde producto.js después de la carga asíncrona. -->
     <main class="container">
       <section id="productos" aria-labelledby="productos-title">
         <div class="section-header">
           <h3 id="productos-title">Productos destacados</h3>
-          <a href="productos.html">Ver catálogo completo</a>
+          <a class="catalog-link" href="productos.html">Ver catálogo completo</a>
         </div>
         <div id="productGrid" class="products-grid" aria-live="polite">
-         
-
-
-
         </div>
+      </section>
+
+      <!-- Banner institucional sobre el trabajo artesanal del taller. -->
+      <section class="craft-banner" aria-labelledby="craft-banner-title">
+        <div>
+          <p class="eyebrow">El detalle importa</p>
+          <h2 id="craft-banner-title">Calidad que<br><em>perdura.</em></h2>
+        </div>
+        <p>Cada pieza nace de manos expertas y materiales nobles. Con el tiempo suma carácter, se vuelve parte de tu rutina y acompaña nuevas historias en tu hogar.</p>
+        <a class="button button-outline" href="contacto.html"> Contactanos <span aria-hidden="true">↗</span></a>
+      </section>
+
+      <!-- Recorrido de la experiencia de vivir con una pieza de Hermanos Jota. -->
+      <section class="brand-journey" aria-labelledby="brand-journey-title">
+        <div class="section-header">
+          <p class="eyebrow">Una experiencia que permanece</p>
+          <h2 id="brand-journey-title">Más que muebles, un legado.</h2>
+        </div>
+
+        <div class="brand-journey__grid">
+          <article class="brand-journey__item">
+            <span class="brand-journey__number">01</span>
+            <h3>Primera impresión</h3>
+            <p>Notás la calidez de los materiales y el cuidado de cada terminación desde el primer momento.</p>
+          </article>
+
+          <article class="brand-journey__item">
+            <span class="brand-journey__number">02</span>
+            <h3>Conexión más profunda</h3>
+            <p>Cuando la mirás de cerca, aparecen los detalles: materiales elegidos con criterio, proporciones cómodas y una historia de oficio detrás.</p>
+          </article>
+
+          <article class="brand-journey__item">
+            <span class="brand-journey__number">03</span>
+            <h3>Impacto duradero</h3>
+            <p>Con el uso, la pieza gana carácter y se integra naturalmente a tus días. Está hecha para acompañarte, no para pasar de moda.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Sustentabilidad: explica cómo elegimos materiales y prolongamos la vida útil. -->
+      <section class="sustainability" aria-labelledby="sustainability-title">
+        <div class="section-header">
+          <p class="eyebrow">Elegir bien también es diseñar</p>
+          <h2 id="sustainability-title">Materiales con futuro</h2>
+        </div>
+        <p class="sustainability-intro">
+          Nuestro compromiso con el ambiente y las próximas generaciones guía cada decisión,
+          desde el abastecimiento hasta el cuidado de cada pieza.
+        </p>
+
+        <div class="sustainability-grid">
+          <article class="sustainability-block">
+            <h3>Cómo elegimos</h3>
+            <ul class="sustainability-list">
+              <li>Madera certificada FSC de bosques responsables argentinos</li>
+              <li>Prioridad a algarrobo, quebracho y caldén</li>
+              <li>Acabados y adhesivos de bajo COV</li>
+              <li>Proveedores locales del Gran Buenos Aires</li>
+              <li>Al menos 30% de materiales recuperados o reciclados</li>
+              <li>Cero plásticos de un solo uso en la cadena</li>
+            </ul>
+          </article>
+
+          <article class="sustainability-block">
+            <h3>Acabados naturales</h3>
+            <dl class="finish-list">
+              <div>
+                <dt>Aceite de lino</dt>
+                <dd>100% natural, prensado en frío</dd>
+              </div>
+              <div>
+                <dt>Cera de abejas</dt>
+                <dd>Origen local certificado</dd>
+              </div>
+              <div>
+                <dt>Tintes vegetales</dt>
+                <dd>Base agua y pigmentos naturales</dd>
+              </div>
+            </dl>
+          </article>
+        </div>
+
+        <article class="legacy-program">
+          <div>
+            <p class="eyebrow">Compromiso de longevidad</p>
+            <h3>Herencia Viva</h3>
+            <p>Una pieza bien cuidada puede acompañar varias generaciones. Por eso también nos ocupamos de lo que pasa después de la compra.</p>
+          </div>
+          <ul class="legacy-program__list">
+            <li><strong>Garantía extendida:</strong> 10 años en estructura y 5 en acabados</li>
+            <li><strong>Restauración:</strong> recuperamos y renovamos piezas antiguas</li>
+            <li><strong>Taller de cuidados:</strong> capacitación gratuita para clientes</li>
+            <li><strong>Recompra:</strong> hasta 40% del valor en piezas bien cuidadas</li>
+            <li><strong>Trazabilidad:</strong> certificado del origen de cada material</li>
+          </ul>
+        </article>
       </section>
     </main>
 
-    <footer>
-      <div class="container footer-inner">
-        <div class="footer-left">
-          <p class="site-copyright">© 2026 Hermanos Jota. Todos los derechos reservados.</p>
-        </div>
-        <div class="footer-right">
-          <address class="site-address">
-            <span class="address-brand">Hermanos Jota — Casa Taller</span>
-            <span class="address-line">Av. San Juan 2847</span>
-            <span class="address-line">C1232AAB — Barrio de San Cristóbal</span>
-            <span class="address-line">Ciudad Autónoma de Buenos Aires</span>
-            <span class="address-line">Argentina</span>
-          </address>
-        </div>
+    <!-- Pie de página con información institucional, colecciones, contacto y newsletter. -->
+    <footer class="site-footer">
+      <div class="footer-columns">
+        <section class="footer-column footer-about">
+          <p class="footer-heading">Hermanos Jota</p>
+          <p>
+            Recuperamos el oficio de hacer<br>
+            muebles que acompañan la vida,<br>
+            uniendo la herencia del taller<br>
+            con una mirada actual y responsable.
+          </p>
+
+
+        </section>
+
+        <section class="footer-column footer-collections">
+          <p class="footer-heading">Colecciones destacadas</p>
+          <a href="productos.html">Dormitorio</a>
+          <a href="productos.html">Mesas</a>
+          <a href="productos.html">Sillas</a>
+          <a href="productos.html">Sofás</a>
+        </section>
+
+        <section class="footer-column">
+          <p class="footer-heading">Taller</p>
+          <p>Av. San Juan 2847</p>
+          <p>Barrio de San Cristóbal, Buenos Aires</p>
+          <p>Lunes a Viernes: 10:00 - 19:00</p>
+          <a href="mailto:info@hermanosjota.com.ar">
+            info@hermanosjota.com.ar
+          </a>
+        </section>
+
+      </div>
+
+      <div class="footer-bottom">
+        <span>
+          © 2024 Mueblería Hermanos Jota. Todos los derechos reservados.
+        </span>
+
+        <nav aria-label="Enlaces legales">
+          <a href="#">Términos y Condiciones</a>
+          <a href="#">Política de Privacidad</a>
+          <a href="#">Certificación Sustentable</a>
+        </nav>
       </div>
     </footer>
 
   </body>
 
-  <script src="js/data.js"></script>
+  <!-- Los scripts se cargan al final para que el HTML ya esté disponible. -->
+  <script src="js/producto.js"></script>
+  <script src="js/menu.js"></script>
 </html>

@@ -1,3 +1,4 @@
+// Catálogo anterior conservado como referencia; la aplicación utiliza producto.js.
 const Productos = [
     {
         id: 1,
@@ -63,8 +64,10 @@ const Productos = [
     }
 ];
 
+// Busca el contenedor del catálogo cuando este archivo se carga en una página.
 const productosContainer = document.getElementById("productos-container");
 
+// Genera tarjetas sencillas para cada producto disponible.
 if (productosContainer) {
     Productos.forEach((producto) => {
         const productoDiv = document.createElement("div");
@@ -85,8 +88,10 @@ if (productosContainer) {
     });
 }
 
+// Busca la grilla de destacados de la página de inicio.
 const productGrid = document.getElementById("productGrid");
 
+// Muestra los primeros cuatro productos como destacados.
 if (productGrid) {
     for (let i = 0; i < 4; i++) {
         const productGridItem = document.createElement("div");
@@ -108,4 +113,3 @@ if (productGrid) {
 
     ;
 };
-

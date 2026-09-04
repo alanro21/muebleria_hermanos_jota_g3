@@ -1,3 +1,4 @@
+// Catálogo central: cada objeto reúne toda la información que necesitan las vistas.
 const Productos = [
   {
     id: 1,
@@ -5,10 +6,12 @@ const Productos = [
     categoria: "Guardado",
     precio: 150000,
     imagen: "img/Aparador Uspallata.png",
-    descripcion:
-      "Un aparador que suma calidez y guardado inteligente al living o comedor. La puerta de rejilla de caña deja pasar la luz y suaviza el volumen de madera maciza, mientras las patas de bronce elevan la pieza con una silueta liviana típica de los años 60.",
-    materiales: "Madera de nogal maciza, rejilla de caña natural, tapa en mármol reconstituido, patas y herrajes de bronce macizo.",
-    medidas: "160 cm (ancho) × 45 cm (profundidad) × 80 cm (alto)."
+    descripcion: "Aparador de seis puertas fabricado en nogal sostenible con tiradores metálicos en acabado latón. Su silueta minimalista realza el veteado natural de la madera, creando una pieza que combina funcionalidad y elegancia atemporal para espacios contemporáneos.",
+    materiales: "Nogal macizo FSC®, herrajes de latón.",
+    medidas: "180 × 45 × 75 cm",
+    acabado: "Aceite natural ecológico",
+    peso: "68 kg",
+    capacidad: "6 compartimentos interiores"
   },
   {
     id: 2,
@@ -16,10 +19,12 @@ const Productos = [
     categoria: "Estanterías",
     precio: 200000,
     imagen: "img/Biblioteca Recoleta.png",
-    descripcion:
-      "Sistema modular de estantes abiertos pensado para libros, objetos y plantas. La estructura de bronce fino contrasta con los tablones de madera maciza, logrando una pieza que ordena sin cargar visualmente el espacio.",
-    materiales: "Madera de cedro maciza, estructura y remates en bronce macizo.",
-    medidas: "220 cm (ancho) × 35 cm (profundidad) × 180 cm (alto)."
+    descripcion: "Sistema modular de estantes abierto que combina estructura de acero Sage Green y repisas en roble claro. Perfecta para colecciones y objetos de diseño, su diseño versátil se adapta a cualquier espacio contemporáneo con elegancia funcional.",
+    materiales: "Estructura de acero, estantes de roble",
+    medidas: "100 × 35 × 200 cm",
+    acabado: "Laca mate ecológica",
+    capacidad: "45 kg por estante",
+    modulares: "5 estantes ajustables"
   },
   {
     id: 3,
@@ -27,65 +32,78 @@ const Productos = [
     categoria: "Sillones",
     precio: 80000,
     imagen: "img/Butaca Mendoza.png",
-    descripcion:
-      "Butaca de lectura con líneas escandinavas y un tapizado en terciopelo que invita a quedarse. Los apoyabrazos de madera torneada y las patas finas en ángulo son un gesto directo a los sillones de los años 60.",
-    materiales: "Terciopelo de algodón, estructura y patas de roble macizo.",
-    medidas: "75 cm (ancho) × 80 cm (profundidad) × 78 cm (alto)."
+    descripcion: "Butaca tapizada en bouclé Dusty Rose con base de madera de guatambú. El respaldo curvo abraza el cuerpo y ofrece máximo confort, mientras que su diseño orgánico aporta calidez y sofisticación a cualquier ambiente contemporáneo.",
+    materiales: "Guatambú macizo, tela bouclé",
+    medidas: "80 × 75 × 85 cm",
+    acabado: "Cera vegetal, tapizado premium",
+    tapizado: "Repelente al agua y manchas",
+    confort: "Espuma alta densidad"
   },
   {
     id: 4,
-    nombre: "Escritorio Costa",
-    categoria: "Escritorios",
+    nombre: "Sillón Copacabana",
+    categoria: "Sillones",
     precio: 120000,
-    imagen: "img/Escritorio Costa.png",
-    descripcion:
-      "Escritorio compacto para el home office, con superficie en cuero y detalles en latón que suman un aire de estudio de arquitecto. Las patas en compás y el cajonero lateral resuelven guardado sin restar liviandad.",
-    materiales: "Madera de nogal americano, cubierta en cuero vegetal, herrajes de latón.",
-    medidas: "140 cm (ancho) × 65 cm (profundidad) × 75 cm (alto)."
+    imagen: "img/Sillón Copacabana.png",
+    descripcion: "Sillón lounge en cuero cognac con base giratoria en acero Burnt Sienna. Inspirado en la estética brasilera moderna de los 60, combina comodidad excepcional con un diseño icónico que trasciende tendencias y épocas.",
+    materiales: "Cuero curtido vegetal, acero pintado",
+    medidas: "90 × 85 × 95 cm",
+    acabado: "Cuero anilina premium",
+    rotacion: "360° silenciosa y suave",
+    garantia: "10 años en estructura"
   },
   {
     id: 5,
-    nombre: "Mesa Comedor Pampa",
+    nombre: "Mesa de Centro Araucaria",
     categoria: "Mesas",
     precio: 250000,
-    imagen: "img/Mesa Comedor Pampa.png",
-    descripcion:
-      "Mesa de comedor familiar con tapa maciza y patas en V que reparten el peso visual sin perder estabilidad. Su veta a la vista es distinta en cada unidad, así que cada mesa es, literalmente, única.",
-    materiales: "Madera de nogal maciza, terminación en aceite natural.",
-    medidas: "200 cm (largo) × 100 cm (ancho) × 75 cm (alto)."
+    imagen: "img/Mesa de Centro Araucaria.png",
+    descripcion: "Mesa de centro con sobre circular de mármol Patagonia y base de tres patas en madera de nogal. Su diseño minimalista se convierte en el punto focal perfecto para cualquier sala de estar contemporánea, combinando la frialdad del mármol con la calidez de la madera.",
+    materiales: "Sobre de mármol Patagonia, patas de nogal",
+    medidas: "90 × 90 × 45 cm",
+    acabado: "Mármol pulido, aceite natural en madera",
+    peso: "42 kg",
+    cargaMaxima: "25 kg distribuidos"
   },
   {
     id: 6,
-    nombre: "Mesa de Centro Araucaria",
+    nombre: "Mesa de Noche Aconcagua",
     categoria: "Mesas",
     precio: 90000,
-    imagen: "img/Mesa de Centro Araucaria.png",
-    descripcion:
-      "Mesa de centro escultórica, con una base de madera curva que sostiene una tapa de vidrio templado. Funciona como pieza de diseño incluso cuando está vacía.",
-    materiales: "Madera de guayubira maciza, tapa de vidrio templado de 12 mm.",
-    medidas: "120 cm (largo) × 75 cm (ancho) × 40 cm (alto)."
+    imagen: "img/Mesa de Noche Aconcagua.png",
+    descripcion: "Mesa de noche con cajón oculto y repisa inferior en roble certificado FSC®. Su diseño limpio y funcional permite convivir con diferentes estilos de dormitorio, ofreciendo almacenamiento discreto y elegante para objetos personales.",
+    materiales: "Roble macizo FSC®, herrajes soft-close",
+    medidas: "45 × 35 × 60 cm",
+    acabado: "Barniz mate de poliuretano",
+    almacenamiento: "1 cajón + repisa inferior",
+    caracteristicas: "Cajón con cierre suave"
   },
   {
     id: 7,
-    nombre: "Mesa de Noche Aconcagua",
-    categoria: "Dormitorio",
+    nombre: "Sofá Patagonia",
+    categoria: "Sofás",
     precio: 95000,
-    imagen: "img/Mesa de Noche Aconcagua.png",
-    descripcion:
-      "Mesa de luz flotante con cajón silencioso y un estante abierto para lo que se usa todos los días. Ideal para dormitorios donde cada centímetro de piso importa.",
-    materiales: "Madera de nogal maciza, interior lacado, guías de cajón de cierre suave.",
-    medidas: "50 cm (ancho) × 40 cm (profundidad) × 25 cm (alto)."
+    imagen: "img/Sofá Patagonia.png",
+    descripcion: "Sofá de tres cuerpos tapizado en lino Warm Alabaster con patas cónicas de madera. Los cojines combinan espuma de alta resiliencia con plumón reciclado, ofreciendo comodidad duradera y sostenible para el hogar moderno.",
+    materiales: "Madera de eucalipto certificada FSC®",
+    medidas: "220 × 90 × 80 cm",
+    estructura: "Madera de eucalipto certificada FSC®",
+    tapizado: "Lino 100% natural premium",
+    relleno: "Espuma HR + plumón reciclado",
+    sostenibilidad: "Materiales 100% reciclables"
   },
   {
     id: 8,
-    nombre: "Silla de Trabajo Belgrano",
-    categoria: "Sillas",
+    nombre: "Mesa Comedor Pampa",
+    categoria: "Mesas",
     precio: 60000,
-    imagen: "img/Silla de Trabajo Belgrano.png",
-    descripcion:
-      "Silla de escritorio con estructura de madera curvada y malla técnica transpirable, para que el confort de oficina no signifique renunciar a la calidez de la madera en el resto del ambiente.",
-    materiales: "Estructura de fresno curvado, malla técnica, tapizado de asiento en lino, mecanismo regulable en altura.",
-    medidas: "65 cm (ancho) × 65 cm (profundidad) × 110–120 cm (alto regulable)."
+    imagen: "img/Mesa Comedor Pampa.png",
+    descripcion: "Mesa extensible de roble macizo con tablero biselado y sistema de apertura suave. Su diseño robusto y elegante se adapta perfectamente a reuniones íntimas o grandes celebraciones familiares, extendiéndose de 6 a 10 comensales.",
+    materiales: "Roble macizo FSC®, mecanismo alemán",
+    medidas: "160-240 × 90 × 75 cm",
+    acabado: "Aceite-cera natural",
+    capacidad: "6-10 comensales",
+    extension: "Sistema de mariposa central"
   },
   {
     id: 9,
@@ -93,41 +111,61 @@ const Productos = [
     categoria: "Sillas",
     precio: 180000,
     imagen: "img/Sillas Córdoba.png",
-    descripcion:
-      "Set de dos sillas de comedor con respaldo de varillas torneadas, inspiradas en las clásicas sillas Windsor y reinterpretadas con un asiento tapizado en lino verde salvia.",
-    materiales: "Madera de fresno maciza, tapizado de asiento en lino.",
-    medidas: "45 cm (ancho) × 50 cm (profundidad) × 90 cm (alto). Se vende el par."
+    descripcion: "Set de cuatro sillas apilables en contrachapado moldeado de nogal y estructura tubular pintada en Sage Green. Su diseño ergonómico y materiales de calidad garantizan comodidad y durabilidad en el uso diario, perfectas para comedores contemporáneos.",
+    materiales: "Contrachapado nogal, tubo de acero",
+    medidas: "45 × 52 × 80 cm (cada una)",
+    acabado: "Laca mate, pintura epoxi",
+    apilables: "Hasta 6 sillas",
+    incluye: "Set de 4 sillas"
   },
   {
     id: 10,
-    nombre: "Sillón Copacabana",
-    categoria: "Sillones",
+    nombre: "Escritorio Costa",
+    categoria: "Escritorios",
     precio: 220000,
-    imagen: "img/Sillón Copacabana.png",
-    descripcion:
-      "Sillón de un cuerpo en cuero curtido vegetal, con una estructura de madera a la vista que envejece con carácter. Una pieza pensada para durar generaciones, no temporadas.",
-    materiales: "Cuero curtido vegetal, estructura de roble macizo.",
-    medidas: "80 cm (ancho) × 85 cm (profundidad) × 85 cm (alto)."
+    imagen: "img/Escritorio Costa.png",
+    descripcion: "Escritorio compacto con cajón organizado y tapa pasacables integrada en bambú laminado. Ideal para espacios de trabajo en casa, combina funcionalidad moderna con estética minimalista y sostenible, perfecto para el trabajo remoto.",
+    materiales: "Bambú laminado, herrajes ocultos",
+    medidas: "120 × 60 × 75 cm",
+    acabado: "Laca mate resistente",
+    almacenamiento: "1 cajón con organizador",
+    cables: "Pasacables integrado"
   },
   {
     id: 11,
-    nombre: "Sofá Patagonia",
-    categoria: "Sofás",
+    nombre: "Silla de Trabajo Belgrano",
+    categoria: "Sillas",
     precio: 300000,
-    imagen: "img/Sofá Patagonia.png",
-    descripcion:
-      "Sofá de tres cuerpos con tapizado bouclé y base de madera flotante, pensado como protagonista del living. Los almohadones sueltos suman color y una textura cálida al conjunto.",
-    materiales: "Tela bouclé, relleno en espuma de alta densidad, base de madera de guatambú.",
-    medidas: "210 cm (ancho) × 90 cm (profundidad) × 85 cm (alto)."
+    imagen: "img/Silla de Trabajo Belgrano.png",
+    descripcion: "Silla ergonómica regulable en altura con respaldo de malla transpirable y asiento tapizado en tejido reciclado. Diseñada para largas jornadas de trabajo con máximo confort y apoyo lumbar, ideal para oficinas en casa y espacios de coworking.",
+    materiales: "Malla técnica, tejido reciclado",
+    medidas: "60 × 60 × 90-100 cm",
+    acabado: "Base cromada, tapizado premium",
+    regulacion: "Altura + inclinación respaldo",
+    certificacion: "Ergonomía europea EN 1335"
   }
 ];
  
-/* Formatea precios en pesos argentinos */
+// Convierte un número en un precio legible usando el formato habitual de Argentina.
 function formatearPrecio(valor) {
   return valor.toLocaleString("es-AR");
 }
+
+// Crea una espera reutilizable para simular una respuesta lenta del servidor.
+function esperar(milisegundos) {
+  return new Promise((resolve) => setTimeout(resolve, milisegundos));
+}
+
+// Lee el carrito guardado y refleja su cantidad en el contador del encabezado.
+function actualizarContadorCarrito() {
+  const contador = document.getElementById("contador-carrito");
+  if (contador) {
+    contador.textContent =
+      Number(localStorage.getItem("cantidadCarrito")) || 0;
+  }
+}
  
-/* Renderizado de tarjetas de producto (clickeables) */
+// Construye una tarjeta completa y la convierte en un enlace hacia el detalle.
 function crearTarjetaProducto(producto) {
   const tarjeta = document.createElement("a");
   tarjeta.href = `producto.html?id=${producto.id}`;
@@ -148,18 +186,80 @@ function crearTarjetaProducto(producto) {
   return tarjeta;
 }
  
+// Vacía un contenedor y dibuja en él todas las tarjetas recibidas.
 function renderizarProductos(lista, contenedor) {
   contenedor.innerHTML = "";
   lista.forEach((producto) => {
     contenedor.appendChild(crearTarjetaProducto(producto));
   });
 }
+
+// Traduce las claves técnicas del objeto a títulos claros para la ficha del producto.
+function obtenerEtiquetaDetalle(clave) {
+  const etiquetas = {
+    acabado: "Acabado",
+    peso: "Peso",
+    capacidad: "Capacidad",
+    modulares: "Configuración modular",
+    tapizado: "Tapizado",
+    confort: "Confort",
+    rotacion: "Rotación",
+    garantia: "Garantía",
+    cargaMaxima: "Carga máxima",
+    almacenamiento: "Almacenamiento",
+    caracteristicas: "Características",
+    estructura: "Estructura",
+    relleno: "Relleno",
+    sostenibilidad: "Sostenibilidad",
+    extension: "Extensión",
+    apilables: "Apilables",
+    incluye: "Incluye",
+    cables: "Cables",
+    regulacion: "Regulación",
+    certificacion: "Certificación",
+  };
+
+  return etiquetas[clave] || clave;
+}
+
+// Agrega a la ficha todos los detalles específicos disponibles para ese producto.
+function renderizarDetallesAdicionales(producto, contenedor) {
+  const camposBase = new Set([
+    "id",
+    "nombre",
+    "categoria",
+    "precio",
+    "imagen",
+    "descripcion",
+    "materiales",
+    "medidas",
+  ]);
+  const botonAgregar = contenedor.querySelector("#btn-agregar");
+
+  Object.entries(producto).forEach(([clave, valor]) => {
+    if (camposBase.has(clave) || valor === undefined || valor === "") return;
+
+    const item = document.createElement("div");
+    item.className = "spec-item";
+    item.innerHTML = `
+      <dt>${obtenerEtiquetaDetalle(clave)}</dt>
+      <dd>${valor}</dd>
+    `;
+
+    if (botonAgregar) {
+      contenedor.insertBefore(item, botonAgregar);
+    } else {
+      contenedor.appendChild(item);
+    }
+  });
+}
  
-/* catálogo completo + buscador */
+// Estos elementos solo existen en la página del catálogo.
 const productosContainer = document.getElementById("productos-container");
 const buscadorInput = document.getElementById("buscador");
 const resultadosInfo = document.getElementById("resultados-info");
  
+// Actualiza el texto que informa cuántos productos se están mostrando.
 function actualizarResultadosInfo(cantidad, termino) {
   if (!resultadosInfo) return;
   if (termino) {
@@ -171,35 +271,52 @@ function actualizarResultadosInfo(cantidad, termino) {
     resultadosInfo.textContent = `Mostrando ${cantidad} de ${Productos.length} productos`;
   }
 }
- 
-if (productosContainer) {
-  renderizarProductos(Productos, productosContainer);
-  actualizarResultadosInfo(Productos.length, "");
- 
-  if (buscadorInput) {
-    buscadorInput.addEventListener("input", (evento) => {
-      const termino = evento.target.value.trim().toLowerCase();
-      const filtrados = Productos.filter((producto) =>
-        producto.nombre.toLowerCase().includes(termino) ||
-        producto.categoria.toLowerCase().includes(termino)
-      );
-      renderizarProductos(filtrados, productosContainer);
-      actualizarResultadosInfo(filtrados.length, termino);
-    });
-  }
+
+// Simula la carga asíncrona y devuelve el catálogo cuando finaliza la espera.
+async function cargarCatalogo() {
+ await esperar(1000);
+ return Productos;
 }
- 
-/* grilla de productos destacados */
+
+// Inicializa el catálogo, sus destacados y el filtro de búsqueda.
+async function iniciarCatalogo() {
+ const productos = await cargarCatalogo();
+
+ if (productosContainer) {
+   renderizarProductos(productos, productosContainer);
+   actualizarResultadosInfo(productos.length, "");
+
+   if (buscadorInput) {
+     buscadorInput.addEventListener("input", (evento) => {
+       const termino = evento.target.value.trim().toLowerCase();
+       const filtrados = productos.filter(
+         (producto) =>
+           producto.nombre.toLowerCase().includes(termino) ||
+           producto.categoria.toLowerCase().includes(termino)
+       );
+       renderizarProductos(filtrados, productosContainer);
+       actualizarResultadosInfo(filtrados.length, termino);
+     });
+   }
+ }
+
+ if (productGrid) {
+   renderizarProductos(productos.slice(0, 4), productGrid);
+ }
+}
+
 const productGrid = document.getElementById("productGrid");
- 
-if (productGrid) {
-  const destacados = Productos.slice(0, 4);
-  destacados.forEach((producto) => {
-    productGrid.appendChild(crearTarjetaProducto(producto));
-  });
+
+actualizarContadorCarrito();
+
+if (productosContainer || productGrid) {
+ if (resultadosInfo) {
+   resultadosInfo.textContent = "Cargando productos...";
+ }
+ iniciarCatalogo();
 }
  
-/* PDP (Product Detail Page) */
+// En la página de detalle, toma el id de la URL y completa la información del producto.
 const productoDetalle = document.getElementById("productoDetalle");
  
 if (productoDetalle) {
@@ -230,7 +347,35 @@ if (productoDetalle) {
     if (materialesEl) materialesEl.textContent = producto.materiales;
     if (medidasEl) medidasEl.textContent = producto.medidas;
     if (breadcrumbEl) breadcrumbEl.textContent = producto.nombre;
+
+    const detallesSpecs = document.querySelector(".producto-detalle__specs");
+    if (detallesSpecs) {
+      renderizarDetallesAdicionales(producto, detallesSpecs);
+    }
+
+    // El botón agrega una unidad, actualiza el almacenamiento y confirma la acción.
+    const botonAgregar = document.getElementById("btn-agregar");
+    if (botonAgregar) {
+      botonAgregar.addEventListener("click", async (evento) => {
+        evento.preventDefault();
+        botonAgregar.disabled = true;
+        botonAgregar.textContent = "Agregando...";
+
+        await esperar(1000);
+
+        const cantidadActual =
+          Number(localStorage.getItem("cantidadCarrito")) || 0;
+        const nuevaCantidad = cantidadActual + 1;
+        localStorage.setItem("cantidadCarrito", nuevaCantidad);
+        actualizarContadorCarrito();
+
+        alert(`Se ha agregado ${producto.nombre} al carrito.`);
+        botonAgregar.textContent = "Agregado al Carrito";
+        botonAgregar.disabled = false;
+      });
+    }
  
+    // Busca productos de la misma categoría para mostrar recomendaciones.
     const relacionadosGrid = document.getElementById("relacionadosGrid");
     if (relacionadosGrid) {
       const relacionados = Productos.filter(
@@ -255,4 +400,5 @@ if (productoDetalle) {
     const relacionadosSection = document.getElementById("relacionadosSection");
     if (relacionadosSection) relacionadosSection.style.display = "none";
   }
+
 }

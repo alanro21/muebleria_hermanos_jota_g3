@@ -1,13 +1,29 @@
+/* Paleta oficial compartida por todos los componentes de la página. */
+:root {
+  --color-primario: #A0522D;
+  --color-invertido: #F5E6D3;
+  --color-monocromatico: #000000;
+  --fuente-primaria: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fuente-secundaria: "Playfair Display", Georgia, "Times New Roman", serif;
+  --siena-tostado: var(--color-primario);
+  --verde-salvia: #87A96B;
+  --alabastro-calido: var(--color-invertido);
+  --vara-de-oro: #D4A437;
+  --rosa-polvoriento: #C47A6D;
+}
+
+/* Regla base: evita que bordes y rellenos agranden inesperadamente los elementos. */
 * { box-sizing: border-box; }
 
+/* Tipografía, colores y espaciado general del sitio. */
 /* Tipografía primaria: Inter (stack de sistema). Usada para texto del cuerpo y elementos de interfaz. */
 body {
   margin: 0;
-  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
+  font-family: var(--fuente-primaria);
   font-weight: 400; /* Regular (400): peso para texto principal */
   font-size: 16px; /* Tamaño base recomendado: 12pt ≈ 16px */
-  background: #F5E6D3; /* Alabastro cálido: fondo principal */
-  color: #1f1f1f;
+  background: var(--color-invertido); /* Fondo claro de la variante primaria. */
+  color: var(--siena-tostado);
   line-height: 1.6; /* Altura de línea recomendada para legibilidad */
 }
 
@@ -26,19 +42,20 @@ img {
  margin: 0 auto;
 }
 
-/* Cabecera: diseño mobile-first. Agrupa marca y navegación en columna en dispositivos pequeños. */
+/* Cabecera sticky: conserva la marca y la navegación visibles al desplazarse. */
 header {
- background: #F5E6D3;
- border-bottom: 1px solid #e8ddd0; /* Separador: borde inferior del header */
+ background: var(--color-invertido);
+ border-bottom: 2px solid var(--color-primario); /* Separador principal de la navegación. */
  position: sticky;
  top: 0;
- z-index: 10;
+ z-index: 100;
 }
 
 .header-inner {
  display: flex;
- flex-direction: column; /* Móvil: marca sobre navegación para orden vertical */
- align-items: flex-start;
+ flex-wrap: wrap;
+ align-items: center;
+ justify-content: space-between;
  gap: 12px;
  padding: 10px 0;
 }
@@ -57,55 +74,200 @@ header {
 
 .logo {
  width: 48px; /* Tamaño del logotipo en móvil (px) */
- height: 48px;
+ height: auto;
+ aspect-ratio: 1;
  display: block;
  object-fit: contain;
+ border: 0;
+ box-shadow: none;
+ filter: none;
 }
 
 .brand h1 {
   margin: 0;
-  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif; /* Tipografía secundaria: Playfair para títulos editoriales */
+  font-family: var(--fuente-secundaria); /* Tipografía secundaria: títulos editoriales. */
   font-weight: 700; /* Bold (700): peso recomendado para encabezados principales */
   text-transform: uppercase; /* Aplicar mayúsculas para la marca principal */
   letter-spacing: 0.1em;
   font-size: 1.25rem;
-  color: #A0522D;
+  color: var(--color-primario);
 }
 
+/* En mobile la navegación queda oculta hasta que el botón la abre. */
 nav {
+  display: none;
+  width: 100%;
+  padding-top: 4px;
+}
+
+nav.is-open {
   display: block;
+  animation: menu-reveal 0.2s ease-out;
+}
+
+.menu-toggle {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  border: 1px solid rgba(160, 82, 45, 0.35);
+  border-radius: 12px;
+  background: var(--color-primario);
+  color: var(--color-invertido);
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(80, 56, 41, 0.08);
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.menu-toggle:hover,
+.menu-toggle:focus-visible {
+  border-color: var(--vara-de-oro);
+  background: var(--vara-de-oro);
+  color: var(--color-primario);
+  box-shadow: 0 8px 18px rgba(80, 56, 41, 0.14);
+  outline: none;
+}
+
+.menu-toggle:active {
+  transform: scale(0.96);
+}
+
+.menu-toggle__bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 nav ul {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 28px;
+  gap: 4px;
   list-style: none;
-  padding: 0;
-  margin: 0;
+  padding: 10px;
+  margin: 0 0 2px;
+  border: 1px solid var(--color-primario);
+  border-radius: 16px;
+  background: var(--color-primario);
+  box-shadow: 0 12px 28px rgba(80, 56, 41, 0.1);
   flex-wrap: wrap;
 }
 
 nav a {
-  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-family: var(--fuente-primaria);
   font-weight: 500; /* Medium (500): peso para elementos de navegación y controles */
-  color: #A0522D; /* Siena tostado: enlaces principales de marca */
-  transition: color 0.2s ease;
+  color: var(--color-invertido); /* Variante invertida sobre navegación oscura. */
+  text-align: center;
+  transition: color 0.2s ease, background-color 0.2s ease;
 }
 
 @media (min-width: 621px) {
-  nav ul { gap: 28px; }
+  /* Desde tablet, los enlaces vuelven a una fila horizontal. */
+  nav ul {
+    flex-direction: row;
+    gap: 28px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  nav a {
+    width: auto;
+    padding: 0;
+    color: var(--color-primario);
+  }
 }
 
 
 nav a:hover,
 nav a:focus {
- color: #87A96B; /* Verde salvia: acento sustentable en interacción */
+ color: var(--verde-salvia); /* Verde salvia: acento sustentable en interacción */
 }
 
-/* Hero: sección principal; diseño mobile-first con una columna en dispositivos pequeños */
+@media (max-width: 620px) {
+ .header-inner {
+   gap: 8px;
+   padding: 8px 0;
+ }
+
+ .brand {
+   min-width: 0;
+   flex: 1;
+   gap: 8px;
+ }
+
+ .brand-link {
+   min-width: 0;
+   gap: 8px;
+ }
+
+ .brand h1 {
+   max-width: 190px;
+   font-size: clamp(0.78rem, 3.8vw, 1rem);
+   line-height: 1.15;
+   letter-spacing: 0.06em;
+ }
+
+ nav a:hover,
+ nav a:focus-visible {
+   background: var(--vara-de-oro);
+   color: var(--color-primario);
+   outline: none;
+ }
+}
+
+@keyframes menu-reveal {
+ from {
+   opacity: 0;
+   transform: translateY(-6px);
+ }
+ to {
+   opacity: 1;
+   transform: translateY(0);
+ }
+}
+
+/* Hero: presentación principal con mensaje de marca, acciones e imágenes. */
 .hero {
- background: linear-gradient(190deg, #C47A6D, #F5E6D3 45%, #D4A437);
+ background: var(--verde-salvia);
+ border-bottom: 1px solid var(--vara-de-oro);
  padding: 40px 0 36px; /* Espaciado vertical optimizado para móvil */
 }
 
@@ -119,7 +281,7 @@ nav a:focus {
 .eyebrow {
   display: inline-block;
   background: rgba(160, 82, 45, 0.08);
-  color: #A0522D; /* Siena tostado: microcopy principal */
+  color: var(--color-primario); /* Siena tostado: microcopy principal */
   border: 1px solid rgba(160, 82, 45, 0.18);
   border-radius: 999px;
   padding: 7px 12px;
@@ -131,19 +293,19 @@ nav a:focus {
 
 .hero h2 {
   margin: 18px 0 14px;
-  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif; /* Títulos principales: Playfair Display para encabezados */
+  font-family: var(--fuente-secundaria); /* Títulos principales editoriales. */
   font-weight: 700; /* Bold (700): peso para títulos principales */
   text-transform: uppercase; /* Estilo editorial */
   letter-spacing: 0.1em; /* Espaciado para mayúsculas */
   font-size: clamp(1.8rem, 5vw, 3rem);
   line-height: 1.1;
-  color: #A0522D;
+  color: var(--alabastro-calido);
 }
 
 .hero p {
  margin: 0 0 24px;
  max-width: 60ch;
- color: #5a5148; /* Color de texto secundario para cuerpo y héroe */
+ color: var(--siena-tostado); /* Color de texto secundario para cuerpo y héroe */
  font-size: 1.05rem;
 }
 
@@ -157,7 +319,7 @@ nav a:focus {
   display: inline-block;
   padding: 12px 18px;
   border-radius: 999px;
-  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--fuente-primaria);
   font-weight: 500; /* Medium */
   text-transform: uppercase; /* guía para CTAs */
   letter-spacing: 0.08em;
@@ -165,19 +327,19 @@ nav a:focus {
 }
 
 .btn-primary {
- background: #A0522D; /* Siena tostado: CTA principal de marca */
- color: #fff;
+ background: var(--color-primario); /* Siena tostado: CTA principal de marca */
+ color: var(--alabastro-calido);
 }
 
 .btn-secondary {
  background: transparent;
- border-color: #A0522D; /* Siena tostado: borde de CTA secundario */
- color: #A0522D; /* Siena tostado: texto de énfasis */
+ border-color: var(--color-primario); /* Siena tostado: borde de CTA secundario */
+ color: var(--color-primario); /* Siena tostado: texto de énfasis */
 }
 
 .hero-card {
- background: rgba(245, 230, 211, 0.7);
- border: 1px solid #e8ddd0; /* Borde de tarjeta: separación y contorno ligero */
+ background: var(--rosa-polvoriento);
+ border: 1px solid var(--vara-de-oro); /* Borde de tarjeta: separación y contorno ligero */
  border-radius: 22px;
  padding: 18px;
  box-shadow: 0 20px 40px rgba(80, 56, 41, 0.08);
@@ -186,7 +348,7 @@ nav a:focus {
 .hero-visual {
  min-height: 260px; /* más pequeño en móvil */
  border-radius: 18px;
- background: linear-gradient(160deg, #C47A6D, #F5E6D3 55%, #D4A437);
+ background: var(--siena-tostado);
  position: relative;
  overflow: hidden;
 }
@@ -198,7 +360,7 @@ nav a:focus {
 
 
 
-/* Fotos dentro del hero (posicionadas para composición) */
+/* Composición visual del hero: fotografías y etiqueta superpuesta. */
 .hero-photo {
  position: absolute;
  border-radius: 12px;
@@ -226,7 +388,7 @@ nav a:focus {
  right: 12px;
  bottom: 12px;
  background: rgba(255, 255, 255, 0.95);
- border: 1px solid #e8ddd0; /* Borde: contorno ligero para etiquetas flotantes */
+ border: 1px solid var(--vara-de-oro); /* Borde: contorno ligero para etiquetas flotantes */
  border-radius: 14px;
  padding: 10px 12px;
  box-shadow: 0 10px 20px rgba(0,0,0,0.06);
@@ -236,7 +398,7 @@ nav a:focus {
 .floating-label strong {
  display: block;
  font-size: 0.9rem;
- color: #5a5148; /* antes --muted */
+ color: var(--siena-tostado); /* antes --muted */
 }
 
 .floating-label span {
@@ -244,6 +406,7 @@ nav a:focus {
  font-weight: 700;
 }
 
+/* Espaciado de las áreas principales y del encabezado de cada sección. */
 main {
  padding: 36px 0 32px;
 }
@@ -262,17 +425,42 @@ section {
 
 .section-header h3 {
   margin: 0;
-  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-family: var(--fuente-secundaria);
   font-weight: 400; /* Playfair Regular para títulos elegantes */
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 1.4rem;
-  color: #A0522D;
+  color: var(--color-primario);
 }
 
 .section-header a {
- color: #87A96B; /* Verde salvia: enlace de sección con acento sustentable */
+ color: var(--verde-salvia); /* Verde salvia: enlace de sección con acento sustentable */
  font-weight: 700;
+}
+
+.catalog-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  border: 1px solid var(--color-primario);
+  border-radius: 999px;
+  background: var(--color-primario);
+  color: var(--alabastro-calido) !important;
+  font-family: var(--fuente-primaria);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.catalog-link:hover,
+.catalog-link:focus-visible {
+  background: var(--verde-salvia);
+  border-color: var(--verde-salvia);
+  color: var(--alabastro-calido) !important;
+  transform: translateY(-2px);
 }
 
 .products-grid {
@@ -281,9 +469,297 @@ section {
  gap: 18px;
 }
 
+/* Banner artesanal: destaca el proceso de fabricación después de los productos. */
+.craft-banner {
+ display: grid;
+ grid-template-columns: minmax(240px, 1.1fr) minmax(280px, 1fr) auto;
+ align-items: center;
+ gap: 32px;
+ width: 100vw;
+ margin: 64px 0 64px;
+ margin-left: 50%;
+ transform: translateX(-50%);
+ padding: 40px max(16px, calc((100vw - 1100px) / 2));
+ border: 1px solid rgba(160, 82, 45, 0.2);
+ background: var(--siena-tostado);
+ box-shadow: 0 20px 40px rgba(160, 82, 45, 0.12);
+}
+
+.craft-banner .eyebrow {
+ margin: 0 0 12px;
+ color: var(--vara-de-oro);
+ background: rgba(245, 230, 211, 0.12);
+ border-color: rgba(212, 164, 55, 0.55);
+}
+
+.craft-banner h2 {
+ margin: 0;
+ color: var(--alabastro-calido);
+ font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+ font-size: clamp(1.8rem, 4vw, 2.8rem);
+ line-height: 1.1;
+ max-width: 12ch;
+}
+
+.craft-banner h2 em {
+ color: var(--vara-de-oro);
+ font-weight: 400;
+}
+
+.craft-banner > p {
+ margin: 0;
+ max-width: 42ch;
+ line-height: 1.65;
+ color: var(--alabastro-calido);
+}
+
+.button {
+ display: inline-flex;
+ align-items: center;
+ justify-content: center;
+ gap: 8px;
+ padding: 12px 18px;
+ border-radius: 999px;
+ font-weight: 600;
+ white-space: nowrap;
+}
+
+.button-outline {
+ border: 1px solid var(--color-primario);
+ color: var(--color-primario);
+ transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.craft-banner .button-outline {
+  border-color: var(--vara-de-oro);
+  color: var(--vara-de-oro);
+}
+
+.craft-banner .button-outline:hover,
+.craft-banner .button-outline:focus-visible {
+  background: var(--vara-de-oro);
+  color: var(--siena-tostado);
+}
+
+.button-outline:hover,
+.button-outline:focus-visible {
+ background: var(--color-primario);
+ color: var(--alabastro-calido);
+ transform: translateY(-2px);
+}
+
+/* Recorrido de marca: presenta en tres momentos el vínculo con los muebles. */
+.brand-journey {
+ margin: 0 0 36px;
+ padding: 32px;
+ border: 1px solid var(--vara-de-oro);
+ border-radius: 22px;
+ background: var(--alabastro-calido);
+ box-shadow: 0 16px 32px rgba(160, 82, 45, 0.12);
+}
+
+.brand-journey .section-header {
+ margin-bottom: 28px;
+}
+
+.brand-journey .section-header h2 {
+ margin: 0;
+ color: var(--siena-tostado);
+ font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+ font-size: clamp(1.8rem, 4vw, 2.5rem);
+}
+
+.brand-journey__grid {
+ display: grid;
+ grid-template-columns: repeat(3, minmax(0, 1fr));
+ gap: 22px;
+}
+
+.brand-journey__item {
+ padding: 24px;
+ border: 1px solid rgba(160, 82, 45, 0.2);
+ border-radius: 18px;
+ background: var(--alabastro-calido);
+}
+
+.brand-journey__number {
+ display: block;
+ margin-bottom: 14px;
+ color: var(--vara-de-oro);
+ font-size: 0.8rem;
+ font-weight: 700;
+ letter-spacing: 0.12em;
+}
+
+.brand-journey__item h3 {
+ margin: 0 0 10px;
+ color: var(--siena-tostado);
+ font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+ font-size: 1.25rem;
+ text-transform: uppercase;
+}
+
+.brand-journey__item p {
+ margin: 0;
+ color: var(--siena-tostado);
+ font-size: 0.95rem;
+}
+
+/* Sustentabilidad: reúne abastecimiento, acabados y longevidad en una sección clara. */
+.sustainability {
+ margin: 0 0 36px;
+ padding: 32px;
+ border: 1px solid var(--color-primario);
+ border-radius: 22px;
+ background: var(--color-invertido);
+ color: var(--siena-tostado);
+}
+
+.sustainability .section-header {
+ margin-bottom: 12px;
+}
+
+.sustainability .section-header h2,
+.sustainability-block h3,
+.legacy-program h3 {
+ margin: 0;
+ color: var(--siena-tostado);
+ font-family: var(--fuente-secundaria);
+}
+
+.sustainability .section-header h2 {
+ font-size: clamp(1.8rem, 4vw, 2.5rem);
+}
+
+.sustainability-intro {
+ max-width: 65ch;
+ margin: 0 0 28px;
+ font-family: var(--fuente-primaria);
+ line-height: 1.6;
+}
+
+.sustainability-grid {
+ display: grid;
+ grid-template-columns: repeat(2, minmax(0, 1fr));
+ gap: 22px;
+}
+
+.sustainability-block {
+ padding: 24px;
+ border: 1px solid rgba(160, 82, 45, 0.28);
+ border-radius: 18px;
+ background: transparent;
+}
+
+.sustainability-block h3 {
+ margin-bottom: 16px;
+ font-size: 1.25rem;
+ text-transform: uppercase;
+}
+
+.sustainability-list,
+.legacy-program__list {
+ display: grid;
+ gap: 10px;
+ margin: 0;
+ padding-left: 20px;
+ font-family: var(--fuente-primaria);
+ line-height: 1.5;
+}
+
+.sustainability-list li::marker,
+.legacy-program__list li::marker {
+ color: var(--vara-de-oro);
+}
+
+.finish-list {
+ display: grid;
+ gap: 16px;
+ margin: 0;
+}
+
+.finish-list div {
+ padding-bottom: 12px;
+ border-bottom: 1px solid rgba(160, 82, 45, 0.18);
+}
+
+.finish-list div:last-child {
+ padding-bottom: 0;
+ border-bottom: 0;
+}
+
+.finish-list dt {
+ margin-bottom: 4px;
+ font-family: var(--fuente-primaria);
+ font-weight: 500;
+}
+
+.finish-list dd {
+ margin: 0;
+ font-family: var(--fuente-primaria);
+ font-size: 0.9rem;
+ line-height: 1.6;
+}
+
+.legacy-program {
+ display: grid;
+ grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+ gap: 28px;
+ align-items: start;
+ margin-top: 22px;
+ padding: 24px;
+ border: 1px solid var(--siena-tostado);
+ border-radius: 18px;
+ background: var(--siena-tostado);
+ color: var(--alabastro-calido);
+}
+
+.legacy-program h3 {
+ margin: 4px 0 10px;
+ color: var(--alabastro-calido);
+ font-size: 1.6rem;
+}
+
+.legacy-program p:not(.eyebrow) {
+ margin: 0;
+ font-family: var(--fuente-primaria);
+ line-height: 1.6;
+}
+
+.legacy-program .eyebrow {
+ color: var(--vara-de-oro);
+}
+
+.legacy-program__list {
+ padding-left: 20px;
+}
+
+.legacy-program__list strong {
+ font-weight: 500;
+}
+
+@media (max-width: 900px) {
+ .brand-journey {
+   padding: 24px;
+ }
+
+ .brand-journey__grid {
+   grid-template-columns: 1fr;
+ }
+
+ .sustainability {
+   padding: 24px;
+ }
+
+ .sustainability-grid,
+ .legacy-program {
+   grid-template-columns: 1fr;
+ }
+}
+
 .product-card {
- background: #fffdf9; /* Color de panel: fondo de tarjetas */
- border: 1px solid #e8ddd0; /* Borde de tarjeta: separación sutil */
+ background: var(--alabastro-calido); /* Color de panel: fondo de tarjetas */
+ border: 1px solid var(--vara-de-oro); /* Borde de tarjeta: separación sutil */
  border-radius: 18px;
  overflow: hidden;
  box-shadow: 0 10px 25px rgba(52, 34, 22, 0.04);
@@ -292,7 +768,14 @@ section {
 .product-image {
  height: 180px;
  display: block;
- background: linear-gradient(135deg, #d7c0ab, #b99874 52%, #7d654d);
+ background: var(--siena-tostado);
+ overflow: hidden;
+}
+
+.product-image img {
+ width: 100%;
+ height: 100%;
+ object-fit: contain;
 }
 
 .product-body {
@@ -303,8 +786,8 @@ section {
  display: inline-block;
  padding: 4px 8px;
  border-radius: 999px;
- background: #f3e4d1;
- color: #A0522D; /* Siena tostado: etiquetas de marca */
+ background: var(--rosa-polvoriento);
+ color: var(--color-primario); /* Siena tostado: etiquetas de marca */
  font-size: 0.72rem;
  font-weight: 700;
  margin-bottom: 10px;
@@ -317,7 +800,7 @@ section {
 
 .product-card p {
  margin: 0 0 12px;
- color: #5a5148; /* Color de texto secundario para descripciones */
+ color: var(--siena-tostado); /* Color de texto secundario para descripciones */
  font-size: 0.95rem;
 }
 
@@ -330,93 +813,165 @@ section {
 }
 
 .product-price {
- color: #A0522D; /* Siena tostado: precio y elementos destacados */
+ color: var(--color-primario); /* Siena tostado: precio y elementos destacados */
 }
 
-footer {
- background: #F5E6D3;
- border-top: 1px solid #D4A437;
- padding: 24px 0;
+/* Pie de página: tres columnas informativas y una franja legal inferior. */
+.site-footer {
+  padding: 32px 1.6% 0;
+  border-top: 1px solid var(--vara-de-oro);
+  background: var(--siena-tostado);
+  color: var(--alabastro-calido);
+  font-size: 11px;
 }
 
-.footer-inner {
- display: flex;
- flex-direction: column;
- gap: 12px;
- align-items: flex-start;
+.footer-columns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8%;
+  padding-bottom: 42px;
 }
 
-.footer-left,
-.footer-right {
- width: 100%;
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.footer-right {
- display: flex;
- justify-content: flex-start;
+.footer-collections {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-content: start;
 }
 
-.site-address {
- font-style: normal;
- color: #A0522D;
- font-size: 0.95rem;
- line-height: 1.5;
- margin: 0;
- display: flex;
- flex-wrap: wrap;
- gap: 0.2rem 0.8rem;
- align-items: center;
- justify-content: flex-start;
- text-align: left;
+.footer-collections .footer-heading {
+  grid-column: 1 / -1;
+  width: 100%;
+  text-align: left;
 }
 
-.address-brand,
-.address-line {
- display: inline-block;
+.footer-column p {
+  margin: 0 0 4px;
+  line-height: 1.55;
 }
 
-.address-brand {
- width: 100%;
- font-weight: 600;
+.footer-heading {
+  margin-bottom: 12px !important;
+  color: var(--vara-de-oro);
+  font: 400 13px var(--fuente-secundaria);
 }
 
-.site-copyright {
- margin: 0;
- color: #A0522D;
- font-size: 0.95rem;
- font-weight: 500;
- letter-spacing: 0.02em;
+.footer-column a {
+  color: var(--alabastro-calido);
+  line-height: 1.9;
 }
 
-/* Footer layout for larger screens */
-@media (min-width: 901px) {
- .footer-inner {
-   flex-direction: row;
-   align-items: flex-end;
-   justify-content: space-between;
-   gap: 20px;
- }
 
- .footer-left,
- .footer-right {
-   width: auto;
- }
 
- .footer-right {
-   justify-content: flex-end;
- }
-
- .site-address {
-   align-items: center;
-   justify-content: flex-end;
-   text-align: right;
- }
-
- .address-brand {
-   width: auto;
- }
+.newsletter-form {
+  display: flex;
+  width: 100%;
+  margin-top: 11px;
 }
-/*estilos para card de productos.html*/
+
+.newsletter-form input {
+  min-width: 0;
+  width: calc(100% - 62px);
+  padding: 8px;
+  border: 1px solid var(--vara-de-oro);
+  background: var(--alabastro-calido);
+  color: var(--siena-tostado);
+  font: 10px Inter, sans-serif;
+}
+
+.newsletter-form button {
+  width: 62px;
+  border: 0;
+  border-radius: 2px;
+  background: var(--color-primario);
+  color: var(--alabastro-calido);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 50px;
+  border-top: 1px solid var(--vara-de-oro);
+  color: var(--alabastro-calido);
+  font-size: 9px;
+}
+
+.footer-bottom nav {
+  display: flex;
+  gap: 22px;
+}
+
+.footer-bottom a {
+  color: inherit;
+}
+
+/* En mobile las columnas se apilan para que todo el contenido conserve legibilidad. */
+@media (max-width: 540px) {
+  .site-footer {
+    padding: 28px 20px 0;
+  }
+
+  .footer-columns {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding-bottom: 30px;
+  }
+
+  .footer-collections {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .footer-column {
+    width: 100%;
+  }
+
+  .footer-column p {
+    line-height: 1.6;
+  }
+
+  .footer-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+    padding: 16px 0;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .footer-bottom > span,
+  .footer-bottom nav {
+    width: 100%;
+  }
+
+  .footer-bottom nav {
+    align-items: center;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .footer-bottom nav a {
+    display: inline;
+    width: auto;
+    padding: 0;
+    border-radius: 0;
+    text-align: center;
+  }
+
+  .footer-bottom nav {
+    flex-wrap: nowrap;
+  }
+}
+/* Estilos heredados para tarjetas del catálogo antiguo. */
 .productos-container{
   display: flex;
   flex-wrap: wrap;
@@ -427,8 +982,8 @@ footer {
 
 
 .producto-card {
-  background: #fffdf9;
-  border: 1px solid #e8ddd0;
+  background: var(--alabastro-calido);
+  border: 1px solid var(--vara-de-oro);
   border-radius: 18px;
   overflow: hidden;
   width:300px;
@@ -446,12 +1001,13 @@ footer {
 }
 
 .producto-card__title {
-  color: #a0522d;
-  font-family: "Playfair Display", serif;
+  color: var(--color-primario);
+  font-family: var(--fuente-secundaria);
+  font-weight: 700;
 }
 
 .producto-card__price {
-  color: #5a5148;
+  color: var(--siena-tostado);
   font-weight: 700;
 }
 
@@ -460,10 +1016,14 @@ footer {
 
 
 
-/* Medias: primero tablet */
+/* Ajustes responsive de tablet: más espacio y dos columnas. */
 @media (min-width: 621px) {
   .products-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .product-image {
+    height: 150px;
   }
 
   .section-header {
@@ -495,7 +1055,6 @@ footer {
 
   .logo {
     width: 56px;
-    height: 56px;
   }
 
   .header-inner {
@@ -503,7 +1062,7 @@ footer {
   }
 }
 
-/* Escritorio */
+/* Ajustes de escritorio: navegación completa y composición en dos columnas. */
 @media (min-width: 901px) {
   .header-inner {
     flex-direction: row;
@@ -511,6 +1070,15 @@ footer {
     justify-content: space-between;
     gap: 24px;
     min-height: 84px;
+  }
+
+  nav {
+    display: block;
+    width: auto;
+  }
+
+  .menu-toggle {
+    display: none;
   }
 
   .hero-inner {
@@ -521,6 +1089,10 @@ footer {
   .products-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 22px;
+  }
+
+  .craft-banner {
+    margin-top: 80px;
   }
 
   .hero {
@@ -552,8 +1124,30 @@ footer {
     justify-content: space-between;
   }
 }
-/*CONTACTO*/
-/*Layout principal de la página de contacto*/
+
+@media (max-width: 900px) {
+  .craft-banner {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 20px;
+  }
+
+  .craft-banner .button {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 620px) {
+  .craft-banner {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 48px;
+    margin-bottom: 40px;
+    padding: 28px 22px;
+  }
+}
+
+/* Contacto: layout principal de la página. */
 .contacto-main {
   display: grid;
   grid-template-columns: 1fr;
@@ -568,22 +1162,38 @@ footer {
   }
 }
 
-/*Títulos de las secciones*/
+/* Jerarquía visual de los títulos de contacto. */
+.contacto-seccion.showroom-taller,
+.contacto-seccion.contacto-digital {
+  padding: 28px;
+  border-radius: 18px;
+  background: var(--alabastro-calido);
+  box-shadow: 0 10px 25px rgba(52, 34, 22, 0.06);
+}
+
+.contacto-seccion.formulario-contacto {
+  padding: 28px;
+  border: 1px solid var(--vara-de-oro);
+  border-radius: 18px;
+  background: var(--alabastro-calido);
+  box-shadow: 0 10px 25px rgba(52, 34, 22, 0.06);
+}
+
 .contacto-seccion h2 {
   font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 1.4rem;
-  color: #A0522D;
+  color: var(--color-primario);
   margin-top: 0;
   margin-bottom: 28px;
 }
 
-/*SECCIÓN: SHOWROOM Y TALLER*/
+/* Sección de showroom y taller: ubicación y horarios. */
 .showroom-card {
   background: transparent; 
-  border-left: 3px solid #A0522D;
+  border-left: 3px solid var(--color-primario);
   padding: 0 0 0 20px;
 }
 
@@ -594,7 +1204,7 @@ footer {
 
 .showroom-nombre {
   font-weight: 700;
-  color: #1f1f1f;
+  color: var(--siena-tostado);
   margin-bottom: 12px;
   font-size: 1.05rem;
 }
@@ -602,19 +1212,19 @@ footer {
 .showroom-direccion, 
 .showroom-horarios p {
   margin: 6px 0;
-  color: #5a5148;
+  color: var(--siena-tostado);
   line-height: 1.6;
 }
 
-/*SECCIÓN: CONTACTO DIGITAL*/
+/* Sección de contacto digital: tabla responsive de enlaces. */
 .tabla-contacto {
   width: 100%;
   border-collapse: collapse; 
   background: transparent;
-  border-left: 3px solid #A0522D;
+  border-left: 3px solid var(--color-primario);
 }
 
-/*Mobile First: Celdas apiladas para mejor lectura en celulares*/
+/* En mobile, cada fila se apila para facilitar la lectura. */
 .tabla-contacto th,
 .tabla-contacto td {
   display: block;
@@ -627,7 +1237,7 @@ footer {
 .tabla-contacto th {
   font-family: 'Inter', system-ui, sans-serif;
   font-weight: 600;
-  color: #1f1f1f;
+  color: var(--siena-tostado);
   padding-bottom: 0;
 }
 
@@ -649,16 +1259,16 @@ footer {
 }
 
 .tabla-contacto td a {
-  color: #5a5148;
+  color: var(--siena-tostado);
   transition: color 0.2s ease;
 }
 
 .tabla-contacto td a:hover,
 .tabla-contacto td a:focus {
-  color: #87A96B;
+  color: var(--verde-salvia);
 }
 
-/*Tablet y pc, diseño de tabla tradicional*/
+/* En tablet y escritorio la tabla recupera su formato tradicional. */
 @media (min-width: 621px) {
   .tabla-contacto th,
   .tabla-contacto td {
@@ -671,7 +1281,7 @@ footer {
     width: 35%;
   }
 }
-/*FORMULARIO DE CONTACTO*/
+/* Formulario de contacto: campos, validación visual y botón de envío. */
 .formulario-contacto {
   grid-column: 1 / -1; 
   margin-top: 16px;
@@ -681,7 +1291,7 @@ footer {
 .form-jota {
   background: transparent; 
   border: none;
-  border-left: 3px solid #A0522D; 
+  border-left: 3px solid var(--color-primario); 
   padding: 0 0 0 20px;
   display: flex;
   flex-direction: column;
@@ -707,7 +1317,7 @@ footer {
   font-family: 'Inter', system-ui, sans-serif;
   font-weight: 600;
   font-size: 0.95rem;
-  color: #1f1f1f;
+  color: var(--siena-tostado);
 }
 
 .form-group input,
@@ -715,10 +1325,10 @@ footer {
   font-family: 'Inter', system-ui, sans-serif;
   font-size: 1rem;
   padding: 14px 16px;
-  border: 1px solid #e8ddd0;
+  border: 1px solid var(--vara-de-oro);
   border-radius: 8px;
-  background: #ffffff; 
-  color: #1f1f1f;
+  background: var(--alabastro-calido); 
+  color: var(--siena-tostado);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
   width: 100%;
   max-width: 100%;
@@ -732,7 +1342,7 @@ footer {
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #87A96B; 
+  border-color: var(--verde-salvia); 
   box-shadow: 0 0 0 3px rgba(135, 169, 107, 0.15);
 }
 
@@ -755,7 +1365,7 @@ footer {
   }
 }
 
-/*AJUSTE DE FOOTER*/
+/* Ajuste final para que el footer ocupe el fondo disponible de la página. */
 html, body {
   height: 100%;
 }
@@ -773,4 +1383,36 @@ header, main, footer {
 
 main {
   flex: 1; /*Empuja el footer hacia abajo*/
+}
+
+/* Fondo cálido y sutil para que el contenido no se perciba completamente blanco. */
+.home-page main.container {
+  position: relative;
+  padding-left: 20px;
+  padding-right: 20px;
+  background:
+    radial-gradient(circle at 8% 18%, rgba(196, 122, 109, 0.14), transparent 28%),
+    radial-gradient(circle at 92% 76%, rgba(135, 169, 107, 0.12), transparent 30%);
+}
+
+.home-page main.container > section:first-child {
+  position: relative;
+  padding-top: 12px;
+}
+
+.home-page main.container > section:first-child::before {
+  display: block;
+  width: 56px;
+  height: 4px;
+  margin-bottom: 20px;
+  border-radius: 999px;
+  background: var(--vara-de-oro);
+  content: "";
+}
+
+@media (max-width: 620px) {
+  .home-page main.container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 }
