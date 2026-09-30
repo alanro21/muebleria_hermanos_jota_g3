@@ -18,7 +18,7 @@ El sitio utiliza HTML semántico, recursos accesibles, diseño responsive y una 
 
 ## Integrantes 
 - Rinaudo Marco Eneas 
-- Castillo Santiago
+- Castillo Santiago Ezequiel
 - Jerez Luca 
 - Segura Matheo 
 - Rodriguez Agostini Alan Hernan
