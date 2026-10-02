@@ -2,7 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 //Importamos los datos (productos.js)
-const productos = require('../data/productos'); 
+const productos = require('../data/productosLista'); 
+
+router.get('/', (req, res) => {
+  res.json(productos);
+});
 
 //Da el producto o error 404
 router.get('/:id', (req, res) => {
@@ -19,4 +23,4 @@ router.get('/:id', (req, res) => {
   res.json(productoEncontrado);
 });
 
-module.exports = router;
+module.exports = { router };
