@@ -4,6 +4,8 @@ export default function FeaturedProducts({
   productos,
   onNavigate,
   onProductSelect,
+  loading,
+  error,
 }) {
 
 
@@ -41,6 +43,8 @@ export default function FeaturedProducts({
       </div>
 
       <div className="productos-grid">
+        {loading && <p role="status">Cargando productos...</p>}
+        {error && <p role="alert">No pudimos cargar los productos. Verificá que el servidor esté funcionando e intentá recargar la página.</p>}
 
         {productos.slice(0,4).map((producto) => (
           <ProductCard

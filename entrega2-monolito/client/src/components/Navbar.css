@@ -1,3 +1,13 @@
+.navbar-toggle { display: none; }
+.navbar-link[aria-current="page"] { text-decoration: underline; text-underline-offset: 6px; }
+@media (max-width: 900px) {
+  .navbar .contenerdor-navbar { flex-direction: row; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
+  .navbar .titulo-logo-navbar { font-size: clamp(12px, 3.4vw, 19px); letter-spacing: .04em; gap: 8px; white-space: normal; }
+  .navbar-toggle { display: block; padding: 10px; background: transparent; border: 1px solid var(--siena-tostado); border-radius: 6px; color: inherit; cursor: pointer; }
+  .navbar .navbar-nav { display: none; width: 100%; flex-direction: column; align-items: stretch; gap: 0; }
+  .navbar .navbar-nav.is-open { display: flex; }
+  .navbar .navbar-link { display: block; padding: 12px; }
+}
 .navbar {
   position: sticky;
   top: 0;

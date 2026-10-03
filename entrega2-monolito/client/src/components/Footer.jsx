@@ -1,6 +1,10 @@
 import './Footer.css'
 
-export default function Footer() {
+export default function Footer({ onNavigate }) {
+  function openCatalog(event) {
+    event.preventDefault()
+    onNavigate('productos')
+  }
   return (
     <footer className="footer">
       <div className="footer-container">
@@ -15,10 +19,10 @@ export default function Footer() {
 
         <section className="footer-section footer-collections">
           <p className="footer-text">Colecciones destacadas</p>
-          <a href="#">Dormitorio</a>
-          <a href="#">Mesas</a>
-          <a href="#">Sillas</a>
-          <a href="#">Sofás</a>
+          <a href="#catalogo" onClick={openCatalog}>Dormitorio</a>
+          <a href="#catalogo" onClick={openCatalog}>Mesas</a>
+          <a href="#catalogo" onClick={openCatalog}>Sillas</a>
+          <a href="#catalogo" onClick={openCatalog}>Sofás</a>
         </section>
 
         <section className="footer-section">
@@ -26,8 +30,8 @@ export default function Footer() {
           <p>Av. San Juan 2847</p>
           <p>Barrio de San Cristóbal, Buenos Aires</p>
           <p>Lunes a Viernes: 10:00 - 19:00</p>
-          <a href="mailto:info@muebleriajota.com" className="footer-link">
-            info@muebleriajota.com
+          <a href="mailto:info@hermanosjota.com.ar" className="footer-link">
+            info@hermanosjota.com.ar
           </a>
         </section>
       </div>

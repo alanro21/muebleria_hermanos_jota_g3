@@ -12,6 +12,14 @@
   min-height: 100%;
 }
 
+.jota-button { display: inline-block; padding: 14px 24px; border: 1px solid var(--siena-tostado); border-radius: 8px; background: var(--siena-tostado); color: var(--alabastro-calido); cursor: pointer; font-size: 13px; }
+.jota-button:hover { background: #824124; }
+.jota-button-secondary { background: transparent; color: var(--siena-tostado); }
+.jota-button-secondary:hover { background: #ead7bf; }
+:focus-visible { outline: 3px solid var(--siena-tostado); outline-offset: 4px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.cart-notice { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 30; width: max-content; max-width: 90%; padding: 16px 24px; border-radius: 10px; background: #61371f; color: #fff; box-shadow: 0 6px 24px #0002; pointer-events: none; }
+
 html,
 body,
 #root {

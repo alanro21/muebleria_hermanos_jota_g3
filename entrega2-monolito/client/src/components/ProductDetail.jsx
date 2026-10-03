@@ -1,4 +1,4 @@
-import { getProductImage } from './ProductCard'
+import { getProductImage } from '../utils/productImages'
 import ProductCard from './ProductCard'
 import './ProductDetail.css'
 
@@ -106,7 +106,7 @@ export default function ProductDetail({
           <div className="product-detail-actions">
             <a
               className="product-detail-contact"
-              href={`mailto:info@muebleriajota.com?subject=${encodeURIComponent(`Consulta por ${producto.nombre}`)}`}
+              href={`mailto:info@hermanosjota.com.ar?subject=${encodeURIComponent(`Consulta por ${producto.nombre}`)}`}
             >
               Consultar disponibilidad
             </a>

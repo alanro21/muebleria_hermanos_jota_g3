@@ -8,6 +8,10 @@ const app = express();
 const cors = require('cors');
 
 const PORT = 3000;
+const logger = require('./middleware/logger');
+
+// Registrar también peticiones con JSON inválido y preflight CORS.
+app.use(logger);
 
 // Middleware CORS
 app.use(cors());
@@ -18,10 +22,6 @@ app.use(express.json());
 app.set('json spaces', 2); // Para que el JSON se vea bonito en la respuesta
 
 // Middleware global de logging
-app.use((req, res, next) => {
-    console.log(`${req.method} ${req.url}`);
-    next();
-});
 
 // Importamos los routers
 const { infoRouter } = require('./routes/info-router');
@@ -41,13 +41,16 @@ app.use((req, res) => {
 // Manejador de errores centralizado
 app.use((err, req, res, next) => {
     console.error(err);
-
-    res.status(500).json({
-        error: 'Error interno del servidor'
+    if (res.headersSent) return next(err);
+    const status = err.status >= 400 && err.status < 600 ? err.status : 500;
+    res.status(status).json({
+        error: err.type === 'entity.parse.failed' ? 'JSON inválido' : 'Error interno del servidor'
     });
 });
 
 // Levantar servidor
-app.listen(PORT, () => {
+if (require.main === module) app.listen(PORT, () => {
     console.log(`Escuchando en el puerto http://localhost:${PORT}`);
 });
+
+module.exports = app;

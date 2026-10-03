@@ -7,6 +7,9 @@ import escritorio from './assets/Escritorio Costa.png'
 import FeaturedProducts from './components/FeaturedProducts'
 import ProductList from './components/ProductList'
 import ProductDetail from './components/ProductDetail'
+import ContactForm from './components/ContactForm'
+import Cart from './components/Cart'
+import { addToCart, changeQuantity, cartTotals, readCart } from './utils/cart'
 
 function App() {
   const [productos, setProductos] = useState([])
@@ -14,9 +17,36 @@ function App() {
   const [error, setError] = useState(null)
   const [vista, setVista] = useState('inicio')
   const [productoSeleccionado, setProductoSeleccionado] = useState(null)
+  const [carrito, setCarrito] = useState(readCart)
+  const [aviso, setAviso] = useState('')
+  const { cantidad } = cartTotals(carrito)
+
+  function agregarProducto(producto) {
+    setCarrito((actual) => addToCart(actual, producto))
+    setAviso(`${producto.nombre} se agregó al carrito.`)
+  }
 
   useEffect(() => {
-  fetch('http://localhost:3000/api/productos')
+    try {
+      localStorage.setItem('jota-carrito', JSON.stringify(carrito))
+    } catch {
+      // El carrito sigue funcionando en memoria si el navegador no permite guardar.
+    }
+  }, [carrito])
+
+  useEffect(() => {
+    if (!aviso) return
+    const timeout = setTimeout(() => setAviso(''), 3000)
+    return () => clearTimeout(timeout)
+  }, [aviso])
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [vista])
+
+  useEffect(() => {
+  const controller = new AbortController()
+  fetch('http://localhost:3000/api/productos', { signal: controller.signal })
     .then((response) => {
       if (!response.ok) {
         throw new Error('Error al obtener los productos')
@@ -29,18 +59,21 @@ function App() {
       setLoading(false)
     })
     .catch((error) => {
+      if (error.name === 'AbortError') return
       setError(error.message)
       setLoading(false)
     })
+  return () => controller.abort()
 }, [])
 
 
   return (
     <div className="app">
+      <div className={aviso ? 'cart-notice' : 'sr-only'} role="status">{aviso}</div>
       {vista === 'inicio' && (
         <main className="inicio">
           <div className="hero-stage">
-            <Navbar onNavigate={setVista} />
+            <Navbar onNavigate={setVista} cantidadCarrito={cantidad} vista={vista} />
             <section className="hero" aria-labelledby="hero-title">
               <div className="hero-content">
                 <span className="hero-etiqueta">Tradición desde 1960</span>
@@ -55,7 +88,7 @@ function App() {
                   <a href="#productos" className="hero-button hero-button-primary">
                     Ver productos
                   </a>
-                  <a href="mailto:info@muebleriajota.com" className="hero-button hero-button-secondary">
+                  <a href="#contacto" onClick={(event) => { event.preventDefault(); setVista('contacto') }} className="hero-button hero-button-secondary">
                     Consultá por tu proyecto
                   </a>
                 </div>
@@ -79,6 +112,8 @@ function App() {
           </div>
 
           <FeaturedProducts
+            loading={loading}
+            error={error}
             productos={productos}
             onNavigate={setVista}
             onProductSelect={(producto) => {
@@ -100,7 +135,7 @@ function App() {
               tiempo suma carácter, se vuelve parte de tu rutina y acompaña nuevas
               historias en tu hogar.
             </p>
-            <a className="calidad-contacto" href="mailto:info@muebleriajota.com">
+            <a className="calidad-contacto" href="#contacto" onClick={(event) => { event.preventDefault(); setVista('contacto') }}>
               Contactanos <span aria-hidden="true">↗</span>
             </a>
           </section>
@@ -207,9 +242,10 @@ function App() {
 
       {vista === 'productos' && (
         <>
-          <Navbar onNavigate={setVista} />
+          <Navbar onNavigate={setVista} cantidadCarrito={cantidad} vista={vista} />
           <main className="catalogo-page">
             <ProductList
+              onAddToCart={agregarProducto}
               productos={productos}
               loading={loading}
               error={error}
@@ -224,9 +260,10 @@ function App() {
 
       {vista === 'detalle' && productoSeleccionado && (
         <>
-          <Navbar onNavigate={setVista} />
+          <Navbar onNavigate={setVista} cantidadCarrito={cantidad} vista={vista} />
           <main className="detalle-page">
             <ProductDetail
+              onAddToCart={agregarProducto}
               producto={productoSeleccionado}
               productos={productos}
               onNavigate={setVista}
@@ -237,7 +274,15 @@ function App() {
         </>
       )}
 
-      <Footer />
+      {(vista === 'contacto' || vista === 'carrito') && <Navbar onNavigate={setVista} cantidadCarrito={cantidad} vista={vista} />}
+      {vista === 'contacto' && <ContactForm />}
+      {vista === 'carrito' && (
+        <Cart items={carrito} onNavigate={setVista}
+          onQuantityChange={(id, delta) => setCarrito((actual) => changeQuantity(actual, id, delta))}
+          onRemove={(id) => setCarrito((actual) => actual.filter((item) => item.id !== id))}
+          onClear={() => setCarrito([])} />
+      )}
+      <Footer onNavigate={setVista} />
     </div>
   )
 }
