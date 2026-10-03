@@ -1,0 +1,154 @@
+.catalogo-page {
+  flex: 1;
+  min-height: 60vh;
+}
+
+.catalogo {
+  padding: 32px 5% 40px;
+  background-color: #f4eee6;
+}
+
+.productos-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+.catalogo-banner {
+  max-width: 980px;
+  padding: 24px 20px 22px;
+  border: 1px solid var(--vara-de-oro);
+  border-radius: 20px;
+  background-color: var(--siena-tostado);
+}
+
+.catalogo-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border: 1px solid var(--vara-de-oro);
+  border-radius: 999px;
+  color: var(--vara-de-oro);
+  font-size: 9pt;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.catalogo-titulo {
+  margin: 22px 0 18px;
+  color: var(--vara-de-oro);
+  font-family: var(--fuente-secundaria);
+  font-size: clamp(38px, 12vw, 64px);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.catalogo-titulo span {
+  display: block;
+}
+
+.catalogo-banner p {
+  max-width: 660px;
+  margin: 0;
+  color: #f4eee6;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.catalogo-toolbar {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 8px;
+}
+
+.catalogo-busqueda {
+  flex: 1;
+}
+
+.catalogo-busqueda input {
+  width: 100%;
+  min-height: 52px;
+  padding: 0 16px;
+  border: 1px solid var(--vara-de-oro);
+  border-radius: 18px;
+  background: transparent;
+  color: var(--siena-tostado);
+  font-family: var(--fuente-primaria);
+  font-size: 18px;
+  outline: none;
+}
+
+.catalogo-busqueda input::placeholder {
+  color: rgba(109, 69, 45, 0.8);
+}
+
+.catalogo-resultado {
+  color: var(--siena-tostado);
+  font-size: 15px;
+  text-align: right;
+}
+
+.catalogo .productos-grid {
+  margin-top: 28px;
+}
+
+.catalogo-sin-resultados {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--siena-tostado);
+  font-size: 16px;
+}
+
+@media (min-width: 560px) {
+  .catalogo .productos-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .catalogo {
+    padding: 44px 6% 52px;
+  }
+}
+
+@media (min-width: 700px) {
+  .catalogo-banner {
+    padding: 34px 42px 30px;
+    border-radius: 26px;
+  }
+
+  .catalogo-titulo {
+    margin: 28px 0 22px;
+    font-size: clamp(52px, 5vw, 86px);
+  }
+
+  .catalogo-banner p {
+    font-size: 18px;
+  }
+
+  .catalogo-toolbar {
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+    margin-top: 34px;
+  }
+
+  .catalogo-busqueda input {
+    min-height: 56px;
+    padding: 0 20px;
+  }
+
+  .catalogo-resultado {
+    white-space: nowrap;
+  }
+
+  .catalogo .productos-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+    margin-top: 42px;
+  }
+}

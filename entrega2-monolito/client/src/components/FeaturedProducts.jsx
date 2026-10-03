@@ -1,6 +1,10 @@
 import ProductCard from './ProductCard'
 
-export default function FeaturedProducts({ productos }) {
+export default function FeaturedProducts({
+  productos,
+  onNavigate,
+  onProductSelect,
+}) {
 
 
   return (
@@ -26,6 +30,10 @@ export default function FeaturedProducts({ productos }) {
         <a
           href="#catalogo"
           className="productos-catalogo-link"
+          onClick={(event) => {
+            event.preventDefault()
+            onNavigate?.('productos')
+          }}
         >
           Ver catálogo completo
         </a>
@@ -38,6 +46,7 @@ export default function FeaturedProducts({ productos }) {
           <ProductCard
             key={producto.id}
             {...producto}
+            onProductClick={() => onProductSelect?.(producto)}
           />
         ))}
 
