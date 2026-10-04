@@ -46,7 +46,7 @@ function App() {
 
   useEffect(() => {
   const controller = new AbortController()
-  fetch('http://localhost:3000/api/productos', { signal: controller.signal })
+  fetch('https://muebleria-hermanos-jota-g3.onrender.com/api/productos', { signal: controller.signal })
     .then((response) => {
       if (!response.ok) {
         throw new Error('Error al obtener los productos')
