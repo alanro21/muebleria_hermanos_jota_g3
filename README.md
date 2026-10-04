@@ -4,7 +4,14 @@
   <img src="img/logo.svg" width="300">
 </p>
 
-**Sitio Web:** [Visitar Mueblería Hermanos Jota](https://alanro21.github.io/muebleria_hermanos_jota_g3/)
+## Sitios Web
+### Entrega 1:
+- **Sitio Web Entrega 1:** [Visitar Mueblería Hermanos Jota](https://alanro21.github.io/muebleria_hermanos_jota_g3/)
+
+## Sitios Web
+### Entrega 2:
+- **Sitio Web Entrega 1:** [Visitar Mueblería Hermanos Jota](https://muebleria-hermanos-jota-g3-six.vercel.app/)
+- **API:** [Ver API](https://muebleria-hermanos-jota-g3.onrender.com/)
 
 # Entrega 1
 
