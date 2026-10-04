@@ -25,12 +25,10 @@ La entrega tiene dos proyectos separados: client (frontend) y backend, cada uno 
 
 1. Servidor Backend - API Express:
 Una vez instalado Node.js en la computadora, se instala Express desde la terminal utilizando el comando **npm install express**, ubicándonos previamente en la carpeta del backend.
-
 Luego se crea un archivo server.js, que funciona como archivo principal del backend y se encarga de configurar y levantar el servidor, los middlewares y las rutas de la API.
 
 2. Servidor frontend - React y Vite:
 Para desarrollar el frontend se utiliza React junto con Vite. El proyecto se puede crear mediante Vite desde la terminal utilizando el comando **npm create vite@latest carpeta -- --template react**. Se visualizará una serie de opciones, donde se deberá elegir React, JavaScript y ESLint.
-
 Luego, se podrá proceder con el armado de la interfaz, utilizando componentes (Components) para organizar y estructurar la aplicación. 
 
 ## Arquitectura:
