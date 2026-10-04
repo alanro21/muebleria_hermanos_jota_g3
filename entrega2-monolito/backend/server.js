@@ -7,7 +7,7 @@ const app = express();
 // CORS: permite recibir peticiones desde otros dominios/orígenes.
 const cors = require('cors');
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const logger = require('./middleware/logger');
 
 // Registrar también peticiones con JSON inválido y preflight CORS.
@@ -49,8 +49,10 @@ app.use((err, req, res, next) => {
 });
 
 // Levantar servidor
-if (require.main === module) app.listen(PORT, () => {
-    console.log(`Escuchando en el puerto http://localhost:${PORT}`);
-});
+if (require.main === module){
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Escuchando en el puerto ${PORT}`);
+  });
+}
 
 module.exports = app;
