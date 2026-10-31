@@ -1,0 +1,227 @@
+/* Contacto: layout principal de la página. */
+.contacto-main { width: min(1180px, 90%); margin: 0 auto; }
+.contacto-main > section { min-width: 0; }
+.field-error { color: #9b2424; font-size: 14px; }
+.form-group [aria-invalid="true"] { border-color: #9b2424; }
+.contact-note { font-size: 13px; margin: 0; }
+.form-jota .jota-button { align-self: flex-start; }
+.contact-success { padding: 24px; border: 1px solid var(--verde-salvia); border-radius: 12px; background: #87a96b14; }
+.contact-success a { color: inherit; overflow-wrap: anywhere; }
+@media (max-width: 420px) { .contacto-main .contacto-seccion { padding: 18px; } }
+.contacto-main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  padding: 40px 0 60px;
+}
+
+@media (min-width: 901px) {
+  .contacto-main {
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+  }
+}
+
+/* Jerarquía visual de los títulos de contacto. */
+.contacto-seccion.showroom-taller,
+.contacto-seccion.contacto-digital {
+  padding: 28px;
+  border-radius: 18px;
+  background: var(--alabastro-calido);
+  box-shadow: 0 10px 25px rgba(52, 34, 22, 0.06);
+}
+
+.contacto-seccion.formulario-contacto {
+  padding: 28px;
+  border: 1px solid var(--vara-de-oro);
+  border-radius: 18px;
+  background: var(--alabastro-calido);
+  box-shadow: 0 10px 25px rgba(52, 34, 22, 0.06);
+}
+
+.contacto-seccion h2 {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 1.4rem;
+  color: var(--color-primario);
+  margin-top: 0;
+  margin-bottom: 28px;
+}
+
+/* Sección de showroom y taller: ubicación y horarios. */
+.showroom-card {
+  background: transparent; 
+  border-left: 3px solid var(--color-primario);
+  padding: 0 0 0 20px;
+}
+
+.showroom-info {
+  font-style: normal;
+  margin-bottom: 28px;
+}
+
+.showroom-nombre {
+  font-weight: 700;
+  color: var(--siena-tostado);
+  margin-bottom: 12px;
+  font-size: 1.05rem;
+}
+
+.showroom-direccion, 
+.showroom-horarios p {
+  margin: 6px 0;
+  color: var(--siena-tostado);
+  line-height: 1.6;
+}
+
+/* Sección de contacto digital: tabla responsive de enlaces. */
+.tabla-contacto {
+  width: 100%;
+  border-collapse: collapse; 
+  background: transparent;
+  border-left: 3px solid var(--color-primario);
+}
+
+/* En mobile, cada fila se apila para facilitar la lectura. */
+.tabla-contacto th,
+.tabla-contacto td {
+  display: block;
+  width: 100%;
+  padding: 8px 20px;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.tabla-contacto th {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 600;
+  color: var(--siena-tostado);
+  padding-bottom: 0;
+}
+
+.tabla-contacto td {
+  padding-top: 4px;
+  border-bottom: 1px solid rgba(160, 82, 45, 0.15);
+  
+  overflow-wrap: anywhere; 
+  word-break: break-word; 
+}
+
+.tabla-contacto tbody tr {
+  background-color: transparent !important; 
+}
+
+.tabla-contacto tbody tr:last-child th,
+.tabla-contacto tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.tabla-contacto td a {
+  color: var(--siena-tostado);
+  transition: color 0.2s ease;
+}
+
+.tabla-contacto td a:hover,
+.tabla-contacto td a:focus {
+  color: var(--verde-salvia);
+}
+
+/* En tablet y escritorio la tabla recupera su formato tradicional. */
+@media (min-width: 621px) {
+  .tabla-contacto th,
+  .tabla-contacto td {
+    display: table-cell; 
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(160, 82, 45, 0.15);
+  }
+  
+  .tabla-contacto th {
+    width: 35%;
+  }
+}
+/* Formulario de contacto: campos, validación visual y botón de envío. */
+.formulario-contacto {
+  grid-column: 1 / -1; 
+  margin-top: 16px;
+  min-width: 0;
+}
+
+.form-jota {
+  background: transparent; 
+  border: none;
+  border-left: 3px solid var(--color-primario); 
+  padding: 0 0 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0; 
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  min-width: 0;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.form-group label {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--siena-tostado);
+}
+
+.form-group input,
+.form-group textarea {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1rem;
+  padding: 14px 16px;
+  border: 1px solid var(--vara-de-oro);
+  border-radius: 8px;
+  background: var(--alabastro-calido); 
+  color: var(--siena-tostado);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--verde-salvia); 
+  box-shadow: 0 0 0 3px rgba(135, 169, 107, 0.15);
+}
+
+.form-jota .btn {
+  align-self: center;
+  width: 100%;
+  cursor: pointer;
+  border: none;
+  margin-top: 8px;
+}
+
+@media (min-width: 621px) {
+  .form-row {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .form-jota .btn {
+    align-self: flex-start;
+    width: auto;
+  }
+}
+
