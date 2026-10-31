@@ -1,58 +1,24 @@
-// Esto es para levantar el servidor de Express.
+require('dotenv').config();
 const express = require('express');
+const mongoose = require('mongoose');
+const loggerMiddleware = require('./middleware/logger');
+const productosRouter = require('./routes/productos');
 
-// Express: guarda require('express') para levantar el servidor.
 const app = express();
 
-// CORS: permite recibir peticiones desde otros dominios/orígenes.
-const cors = require('cors');
-
-const PORT = process.env.PORT || 3000;
-const logger = require('./middleware/logger');
-
-// Registrar también peticiones con JSON inválido y preflight CORS.
-app.use(logger);
-
-// Middleware CORS
-app.use(cors());
-
-// Middleware para recibir JSON
+//middlewares
+app.use(loggerMiddleware);
 app.use(express.json());
 
-app.set('json spaces', 2); // Para que el JSON se vea bonito en la respuesta
+//rutas
+app.use('/api/productos', productosRouter);
 
-// Middleware global de logging
+//mongodb
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('¡Conexión exitosa!'))
+  .catch((error) => console.error('Error al conectar', error));
 
-// Importamos los routers
-const { infoRouter } = require('./routes/info-router');
-const { router } = require('./routes/productos');
-
-// Rutas
-app.use('/', infoRouter);
-app.use('/api/productos', router);
-
-// Manejador de rutas inexistentes
-app.use((req, res) => {
-    res.status(404).json({
-        error: 'Ruta no encontrada'
-    });
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
-
-// Manejador de errores centralizado
-app.use((err, req, res, next) => {
-    console.error(err);
-    if (res.headersSent) return next(err);
-    const status = err.status >= 400 && err.status < 600 ? err.status : 500;
-    res.status(status).json({
-        error: err.type === 'entity.parse.failed' ? 'JSON inválido' : 'Error interno del servidor'
-    });
-});
-
-// Levantar servidor
-if (require.main === module){
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Escuchando en el puerto ${PORT}`);
-  });
-}
-
-module.exports = app;
