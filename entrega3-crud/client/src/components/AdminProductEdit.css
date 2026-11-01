@@ -1,0 +1,28 @@
+/* ==========================================
+   ESTILOS DE EDICIÓN DE PRODUCTO
+   ========================================== */
+
+.admin-edit-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Destacado para la barra de selección */
+.admin-edit-container select {
+  font-weight: 600;
+  border-color: var(--siena-tostado);
+  background-color: #ffffff;
+}
+
+.admin-btn-edit-submit {
+  border-color: var(--verde-salvia);
+  background-color: var(--verde-salvia);
+  color: #ffffff;
+}
+
+.admin-btn-edit-submit:hover:not(:disabled) {
+  border-color: var(--siena-tostado);
+  background-color: var(--siena-tostado);
+  color: #ffffff;
+}
