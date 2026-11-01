@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react'
 import './App.css'
 import Navbar from './components/Navbar'
@@ -10,6 +11,7 @@ import ProductDetail from './components/ProductDetail'
 import ContactForm from './components/ContactForm'
 import Cart from './components/Cart'
 import AdminProductForm from './components/AdminProductForm'
+import Admin from './components/Admin'
 import { addToCart, changeQuantity, cartTotals, readCart } from './utils/cart'
 import { PRODUCTS_API_URL } from './utils/api'
 import { BrowserRouter, Link, Routes, Route, useNavigate, useParams, useLocation, } from 'react-router-dom'
@@ -281,12 +283,15 @@ function AppContent() {
           />
         </>
         } />
-        <Route path="/admin/crear-producto" element={
+        <Route path="/admin" element={
           <>
             <Navbar cantidadCarrito={cantidad} />
-            <AdminProductForm />
+            <Admin />
           </>
         } />
+      
+
+
         <Route path="*" element={
           <>
             <Navbar cantidadCarrito={cantidad} />
@@ -297,6 +302,9 @@ function AppContent() {
             </main>
           </>
         } />
+        
+
+
       </Routes>
       <Footer />
     </div>
