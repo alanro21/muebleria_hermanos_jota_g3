@@ -5,7 +5,7 @@ import AdminProductEdit from './AdminProductEdit';
 // import AdminProductDelete from './AdminProductDelete';
 
 const Admin = () => {
-  const [modo, setModo] = useState(null);
+  const [modo, setModo] = useState('crear');
 
   return (
     <main className="admin-main">

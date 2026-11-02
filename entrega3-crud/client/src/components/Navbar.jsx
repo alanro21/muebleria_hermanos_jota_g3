@@ -80,16 +80,6 @@ export default function Navbar({ cantidadCarrito = 0 }) {
               Carrito ({cantidadCarrito})
             </NavLink>
           </li>
-
-          <li className="navbar-item">
-            <NavLink
-              to="/admin/crear-producto"
-              className={obtenerClase}
-              onClick={cerrarMenu}
-            >
-              Administración
-            </NavLink>
-          </li>
         </ul>
 
       </div>

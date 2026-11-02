@@ -10,7 +10,6 @@ import ProductList from './components/ProductList'
 import ProductDetail from './components/ProductDetail'
 import ContactForm from './components/ContactForm'
 import Cart from './components/Cart'
-import AdminProductForm from './components/AdminProductForm'
 import Admin from './components/Admin'
 import { addToCart, changeQuantity, cartTotals, readCart } from './utils/cart'
 import { PRODUCTS_API_URL } from './utils/api'
@@ -69,7 +68,7 @@ function AppContent() {
       setLoading(false)
     })
   return () => controller.abort()
-}, [])
+}, [location.pathname])
 
 
   return (
@@ -283,7 +282,7 @@ function AppContent() {
           />
         </>
         } />
-        <Route path="/admin" element={
+        <Route path="/admi/crear-producto" element={
           <>
             <Navbar cantidadCarrito={cantidad} />
             <Admin />
@@ -320,7 +319,7 @@ function ProductDetailRoute({
   onProductSelect,
 }) {
   const { id } = useParams()
-  const producto = productos.find((item) => String(item.id) === id)
+  const producto = productos.find((item) => String(item.id ?? item._id) === id)
 
   if (loading) {
     return (

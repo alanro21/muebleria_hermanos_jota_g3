@@ -103,7 +103,14 @@ const AdminProductEdit = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Error al actualizar el producto');
+        let detalle = 'Error al actualizar el producto';
+        try {
+          const result = await response.json();
+          detalle = result?.error || detalle;
+        } catch {
+          // Se usa el mensaje genérico si la respuesta no es JSON.
+        }
+        throw new Error(detalle);
       }
 
       const productoActualizado = await response.json();
@@ -118,7 +125,9 @@ const AdminProductEdit = () => {
       });
     } catch (error) {
       setFeedback({
-        message: 'Ocurrió un error al intentar actualizar el producto.',
+        message: error instanceof Error
+          ? error.message
+          : 'Ocurrió un error al intentar actualizar el producto.',
         type: 'error'
       });
     } finally {
