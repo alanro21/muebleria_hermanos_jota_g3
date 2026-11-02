@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './adminProductEdit.css';
+import './AdminProductEdit.css';
 import { PRODUCTS_API_URL } from '../utils/api';
 
 const AdminProductEdit = () => {
