@@ -12,6 +12,10 @@
 - **Sitio Web:** [Visitar Mueblería Hermanos Jota](https://muebleria-hermanos-jota-g3-six.vercel.app/)
 - **API:** [Ver API](https://muebleria-hermanos-jota-g3.onrender.com/)
 
+### Entrega 3:
+- **Sitio Web:** [Visitar Mueblería Hermanos Jota](https://muebleria-hermanos-jota-g3-ylpt.vercel.app/)
+- **API:** [Ver API](https://muebleria-hermanos-jota-g3.onrender.com/)
+
 # Entrega 1
 
 ## Descripción de Funcionalidades
@@ -53,9 +57,67 @@ Luego, se podrá proceder con el armado de la interfaz, utilizando componentes (
 
 - **Despliegue separado:** Se decidió utilizar Vercel para el frontend desarrollado con React y Vite, y Render para el backend desarrollado con Node.js y Express.
 
-## Integrantes 
-- Rinaudo Marco Eneas 
+# Entrega 3
+
+## Instalación y ejecución
+
+La entrega cuenta con dos proyectos separados: client (frontend) y backend. Cada uno posee su propio package.json, por lo que las dependencias deben instalarse por separado.
+
+1. Servidor Backend:
+
+Ubicarse en la carpeta entrega3-crud/backend e instalar las dependencias:
+
+npm install
+
+Crear un archivo .env con la siguiente variable:
+
+**MONGO_URI=tu_url_de_conexion_a_mongodb
+PORT=3000**
+
+MONGO_URI contiene la dirección de conexión a MongoDB Atlas. PORT define el puerto del servidor y puede omitirse para utilizar el puerto 3000 por defecto.
+
+Iniciar el servidor:
+
+**npm run dev**
+
+2. Servidor Frontend:
+
+Ubicarse en la carpeta entrega3-crud/client e instalar las dependencias:
+
+**npm install**
+
+Crear un archivo .env con la siguiente variable:
+
+**VITE_API_URL=http://localhost:3000**
+
+Esta variable indica la URL del backend al que se conecta el frontend.
+
+Iniciar la aplicación:
+
+**npm run dev**
+
+## Arquitectura: 
+
+- **Separación cliente-servidor:** Se mantiene la separación entre React (frontend) y Node.js con Express (backend), permitiendo que ambos funcionen de manera independiente.
+ 
+- **API REST:** Se implementan operaciones CRUD para administrar productos mediante los métodos GET, POST, PUT y DELETE, utilizando las rutas /api/productos.
+ 
+- **Base de datos:** Se reemplaza el almacenamiento en memoria de la entrega anterior por MongoDB, utilizando Mongoose para la gestión y persistencia de los productos.
+
+## Decisiones tomadas
+
+- **Persistencia de datos:** Se decidió utilizar MongoDB Atlas para almacenar los productos de manera persistente.
+ 
+- **Gestión de productos:** Se incorporaron las operaciones de creación, consulta, modificación y eliminación de productos.
+ 
+- **Variables de entorno:** Se utilizan archivos .env para configurar la conexión a la base de datos y la comunicación entre frontend y backend, evitando exponer información sensible en el repositorio.
+ 
+- **Despliegue separado:** Se mantiene Vercel para el frontend y Render para el backend, configurando las variables de entorno correspondientes en cada plataforma.
+
+## Integrantes
+
+- Rinaudo Marco Eneas
 - Castillo Santiago Ezequiel
-- Jerez Luca 
-- Segura Matheo 
+- Jerez Luca
+- Segura Matheo
 - Rodriguez Agostini Alan Hernan
