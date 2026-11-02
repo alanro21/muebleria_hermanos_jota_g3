@@ -27,7 +27,7 @@ if (process.env.MONGO_URI) {
     .then(() => console.log('¡Conexión exitosa!'))
     .catch((error) => console.error('Error al conectar:', error));
 } else {
-  console.log('Sin MONGO_URI: el catálogo corre en memoria (GET/PUT/POST/DELETE).');
+  console.error('Sin MONGO_URI: las rutas de productos devolverán HTTP 503.');
 }
 
 const PORT = process.env.PORT || 3000;

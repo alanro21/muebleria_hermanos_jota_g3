@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './AdminProductEdit.css';
 import { PRODUCTS_API_URL } from '../utils/api';
 
@@ -18,26 +18,40 @@ const AdminProductEdit = () => {
   });
 
   useEffect(() => {
+    const controller = new AbortController();
+
     const fetchProductos = async () => {
       try {
-        const response = await fetch(PRODUCTS_API_URL);
-        if (!response.ok) throw new Error('Error al obtener productos');
-        const data = await response.json();
-        
-        // Manejar respuestas que vienen dentro de una propiedad (ej. data.productos)
+        const response = await fetch(PRODUCTS_API_URL, { signal: controller.signal });
+        let data;
+        try {
+          data = await response.json();
+        } catch {
+          throw new Error('El servidor devolvió una respuesta que no se pudo interpretar.');
+        }
+
+        if (!response.ok) {
+          throw new Error(data?.error || `No se pudieron cargar los productos (HTTP ${response.status}).`);
+        }
+
         const listaProductos = Array.isArray(data) ? data : (data.productos || data.data || []);
+        if (!Array.isArray(listaProductos)) {
+          throw new Error('El servidor devolvió un listado de productos inválido.');
+        }
         setProductos(listaProductos);
       } catch (error) {
+        if (error.name === 'AbortError') return;
         setFeedback({
-          message: 'No se pudieron cargar los productos.',
+          message: error instanceof Error ? error.message : 'No se pudieron cargar los productos.',
           type: 'error'
         });
       } finally {
-        setFetching(false);
+        if (!controller.signal.aborted) setFetching(false);
       }
     };
 
     fetchProductos();
+    return () => controller.abort();
   }, []);
 
   const handleSelectChange = (e) => {
@@ -84,7 +98,21 @@ const AdminProductEdit = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!selectedId) return;
+    if (!selectedId || loading) return;
+
+    const nombre = formData.nombre.trim();
+    const precio = Number(formData.precio);
+    const stock = Number(formData.stock);
+
+    if (!nombre || formData.precio === '' || !Number.isFinite(precio) || precio < 0) {
+      setFeedback({ message: 'Ingresá un nombre y un precio válido (igual o mayor a cero).', type: 'error' });
+      return;
+    }
+
+    if (formData.stock === '' || !Number.isInteger(stock) || stock < 0) {
+      setFeedback({ message: 'El stock debe ser un número entero igual o mayor a cero.', type: 'error' });
+      return;
+    }
 
     setLoading(true);
     setFeedback({ message: '', type: '' });
@@ -96,28 +124,38 @@ const AdminProductEdit = () => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          ...formData,
-          precio: Number(formData.precio),
-          stock: Number(formData.stock)
+          nombre,
+          descripcion: formData.descripcion,
+          precio,
+          stock,
+          imagenUrl: formData.imagenUrl.trim()
         })
       });
 
-      if (!response.ok) {
-        let detalle = 'Error al actualizar el producto';
-        try {
-          const result = await response.json();
-          detalle = result?.error || detalle;
-        } catch {
-          // Se usa el mensaje genérico si la respuesta no es JSON.
-        }
-        throw new Error(detalle);
+      let result;
+      try {
+        result = await response.json();
+      } catch {
+        throw new Error('El servidor devolvió una respuesta que no se pudo interpretar.');
       }
 
-      const productoActualizado = await response.json();
+      if (!response.ok) {
+        throw new Error(result?.error || `No se pudo actualizar el producto (HTTP ${response.status}).`);
+      }
+
+      const productoActualizado = result;
 
       setProductos((prev) =>
-        prev.map((p) => (String(p._id || p.id) === String(selectedId) ? productoActualizado : p))
+        prev.map((p) => (String(p._id ?? p.id) === String(selectedId) ? productoActualizado : p))
       );
+
+      setFormData({
+        nombre: productoActualizado.nombre ?? nombre,
+        descripcion: productoActualizado.descripcion ?? formData.descripcion,
+        precio: productoActualizado.precio ?? precio,
+        stock: productoActualizado.stock ?? stock,
+        imagenUrl: productoActualizado.imagenUrl ?? formData.imagenUrl.trim()
+      });
 
       setFeedback({
         message: '¡Producto actualizado con éxito!',
@@ -147,7 +185,7 @@ const AdminProductEdit = () => {
         >
           <option value="">-- Elige un producto --</option>
           {productos.map((prod, index) => {
-            const prodId = prod._id || prod.id;
+            const prodId = prod._id ?? prod.id;
             return (
               <option key={prodId || `prod-${index}`} value={prodId}>
                 {prod.nombre || prod.title} (${prod.precio ?? prod.price})
@@ -181,6 +219,8 @@ const AdminProductEdit = () => {
                 value={formData.precio}
                 onChange={handleChange}
                 required
+                min="0"
+                step="0.01"
               />
             </div>
 
@@ -192,13 +232,15 @@ const AdminProductEdit = () => {
                 name="stock"
                 value={formData.stock}
                 onChange={handleChange}
+                min="0"
+                step="1"
               />
             </div>
 
             <div className="admin-product-field admin-product-field-wide">
               <label htmlFor="imagenUrl">URL de la Imagen</label>
               <input
-                type="text"
+                type="url"
                 id="imagenUrl"
                 name="imagenUrl"
                 value={formData.imagenUrl}

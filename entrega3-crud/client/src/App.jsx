@@ -10,7 +10,9 @@ import ProductList from './components/ProductList'
 import ProductDetail from './components/ProductDetail'
 import ContactForm from './components/ContactForm'
 import Cart from './components/Cart'
-import Admin from './components/Admin'
+import AdminProductForm from './components/AdminProductForm'
+import AdminProductEdit from './components/AdminProductEdit'
+import AdminProductDelete from './components/AdminProductDelete'
 import { addToCart, changeQuantity, cartTotals, readCart } from './utils/cart'
 import { PRODUCTS_API_URL } from './utils/api'
 import { BrowserRouter, Link, Routes, Route, useNavigate, useParams, useLocation, } from 'react-router-dom'
@@ -282,10 +284,22 @@ function AppContent() {
           />
         </>
         } />
-        <Route path="/admi/crear-producto" element={
+        <Route path="/admin/crear-producto" element={
           <>
             <Navbar cantidadCarrito={cantidad} />
-            <Admin />
+            <AdminProductForm />
+          </>
+        } />
+        <Route path="/admin/editar-producto" element={
+          <>
+            <Navbar cantidadCarrito={cantidad} />
+            <AdminProductEdit />
+          </>
+        } />
+        <Route path="/admin/eliminar-producto" element={
+          <>
+            <Navbar cantidadCarrito={cantidad} />
+            <AdminProductDelete />
           </>
         } />
       

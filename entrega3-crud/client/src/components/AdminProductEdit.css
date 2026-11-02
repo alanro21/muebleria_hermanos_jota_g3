@@ -1,28 +1,83 @@
-/* ==========================================
-   ESTILOS DE EDICIÓN DE PRODUCTO
-   ========================================== */
-
 .admin-edit-container {
   display: flex;
+  width: min(940px, 90%);
+  min-height: 65vh;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
+  margin: 0 auto;
+  padding: 38px 0 56px;
 }
 
-/* Destacado para la barra de selección */
+.admin-edit-container > .admin-product-field {
+  gap: 10px;
+  padding: 20px clamp(18px, 4vw, 28px);
+  border: 1px solid var(--vara-de-oro);
+  border-radius: 16px;
+  background: var(--alabastro-calido);
+  box-shadow: 0 10px 25px rgba(52, 34, 22, 0.06);
+}
+
 .admin-edit-container select {
+  width: 100%;
+  min-height: 50px;
+  padding: 12px 15px;
+  border: 1px solid var(--vara-de-oro);
+  border-radius: 8px;
+  background-color: #fff;
+  color: var(--siena-tostado);
+  font: inherit;
   font-weight: 600;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-edit-container select:hover:not(:focus) {
   border-color: var(--siena-tostado);
-  background-color: #ffffff;
+}
+
+.admin-edit-container select:focus,
+.admin-edit-container .admin-product-field input:focus,
+.admin-edit-container .admin-product-field textarea:focus {
+  outline: none;
+  border-color: var(--verde-salvia);
+  box-shadow: 0 0 0 3px rgba(135, 169, 107, 0.18);
+}
+
+.admin-edit-container select:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.admin-edit-container .admin-product-form {
+  box-shadow: 0 12px 30px rgba(52, 34, 22, 0.08);
+}
+
+.admin-edit-container .admin-product-feedback {
+  margin-top: 22px;
+}
+
+.admin-edit-container .admin-product-submit {
+  min-width: 190px;
 }
 
 .admin-btn-edit-submit {
   border-color: var(--verde-salvia);
   background-color: var(--verde-salvia);
-  color: #ffffff;
+  color: #fff;
 }
 
 .admin-btn-edit-submit:hover:not(:disabled) {
   border-color: var(--siena-tostado);
   background-color: var(--siena-tostado);
-  color: #ffffff;
+  color: #fff;
+}
+
+@media (max-width: 639px) {
+  .admin-edit-container {
+    width: 90%;
+    padding-top: 28px;
+  }
+
+  .admin-edit-container .admin-product-submit {
+    width: 100%;
+  }
 }
