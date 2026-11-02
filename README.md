@@ -96,6 +96,16 @@ Iniciar la aplicación:
 
 **npm run dev**
 
+Con el servidor frontend en ejecución, se puede acceder a la administración
+ingresando directamente estas rutas en el navegador:
+
+- Crear un producto: `http://localhost:5173/admin/crear-producto`
+- Editar un producto: `http://localhost:5173/admin/editar-producto`
+- Eliminar un producto: `http://localhost:5173/admin/eliminar-producto`
+
+También se puede reemplazar `http://localhost:5173` por la URL base del frontend
+desplegado. La ruta de creación, por ejemplo, es `/admin/crear-producto`.
+
 ## Arquitectura: 
 
 - **Separación cliente-servidor:** Se mantiene la separación entre React (frontend) y Node.js con Express (backend), permitiendo que ambos funcionen de manera independiente.

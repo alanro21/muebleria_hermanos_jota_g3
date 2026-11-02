@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { PRODUCTS_API_URL } from '../utils/api'
 import './AdminProductForm.css'
 
-export default function AdminProductDelete() {
+export default function AdminProductDelete({ onSuccess }) {
+  const navigate = useNavigate()
   const [productos, setProductos] = useState([])
   const [selectedId, setSelectedId] = useState('')
   const [fetching, setFetching] = useState(true)
@@ -77,10 +79,8 @@ export default function AdminProductDelete() {
         actuales.filter((item) => String(item._id ?? item.id) !== selectedId)
       )
       setSelectedId('')
-      setFeedback({
-        type: 'success',
-        message: result?.mensaje || `El producto “${nombre}” se eliminó correctamente.`,
-      })
+      onSuccess?.(result?.mensaje || `El producto “${nombre}” se eliminó correctamente.`)
+      navigate('/productos')
     } catch (error) {
       setFeedback({
         type: 'error',

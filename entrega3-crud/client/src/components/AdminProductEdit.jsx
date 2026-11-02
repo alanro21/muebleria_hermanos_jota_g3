@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import './AdminProductEdit.css';
 import { PRODUCTS_API_URL } from '../utils/api';
+import { useNavigate } from 'react-router-dom';
 
-const AdminProductEdit = () => {
+const AdminProductEdit = ({ onSuccess }) => {
+  const navigate = useNavigate();
   const [productos, setProductos] = useState([]);
   const [selectedId, setSelectedId] = useState('');
   const [loading, setLoading] = useState(false);
@@ -157,10 +159,8 @@ const AdminProductEdit = () => {
         imagenUrl: productoActualizado.imagenUrl ?? formData.imagenUrl.trim()
       });
 
-      setFeedback({
-        message: '¡Producto actualizado con éxito!',
-        type: 'success'
-      });
+      onSuccess?.('¡Producto actualizado con éxito!');
+      navigate('/productos');
     } catch (error) {
       setFeedback({
         message: error instanceof Error
@@ -183,7 +183,9 @@ const AdminProductEdit = () => {
           onChange={handleSelectChange}
           disabled={fetching}
         >
-          <option value="">-- Elige un producto --</option>
+          <option value="">
+            {fetching ? 'Cargando productos...' : '-- Elige un producto --'}
+          </option>
           {productos.map((prod, index) => {
             const prodId = prod._id ?? prod.id;
             return (
@@ -194,6 +196,18 @@ const AdminProductEdit = () => {
           })}
         </select>
       </div>
+
+      {feedback.type === 'error' && !selectedId && (
+        <p className="admin-product-feedback admin-product-feedback-error" role="alert">
+          {feedback.message}
+        </p>
+      )}
+
+      {!fetching && !feedback.message && productos.length === 0 && (
+        <p className="admin-product-feedback" role="status">
+          No hay productos disponibles para editar.
+        </p>
+      )}
 
       {selectedId && (
         <form className="admin-product-form" onSubmit={handleSubmit}>

@@ -264,6 +264,8 @@ function AppContent() {
             cantidadCarrito={cantidad}
             onAddToCart={agregarProducto}
             onProductSelect={(producto) => navigate(`/productos/${producto.id}`)}
+            onNavigate={(destino) => navigate(destino === 'inicio' ? '/' : '/productos')}
+            onBack={() => navigate('/productos')}
           />
         } />
         <Route path="/contacto" element={
@@ -287,19 +289,19 @@ function AppContent() {
         <Route path="/admin/crear-producto" element={
           <>
             <Navbar cantidadCarrito={cantidad} />
-            <AdminProductForm />
+            <AdminProductForm onSuccess={setAviso} />
           </>
         } />
         <Route path="/admin/editar-producto" element={
           <>
             <Navbar cantidadCarrito={cantidad} />
-            <AdminProductEdit />
+            <AdminProductEdit onSuccess={setAviso} />
           </>
         } />
         <Route path="/admin/eliminar-producto" element={
           <>
             <Navbar cantidadCarrito={cantidad} />
-            <AdminProductDelete />
+            <AdminProductDelete onSuccess={setAviso} />
           </>
         } />
       
@@ -331,6 +333,8 @@ function ProductDetailRoute({
   cantidadCarrito,
   onAddToCart,
   onProductSelect,
+  onNavigate,
+  onBack,
 }) {
   const { id } = useParams()
   const producto = productos.find((item) => String(item.id ?? item._id) === id)
@@ -366,6 +370,8 @@ function ProductDetailRoute({
           producto={producto}
           productos={productos}
           onProductSelect={onProductSelect}
+          onNavigate={onNavigate}
+          onBack={onBack}
         />
       </main>
     </>

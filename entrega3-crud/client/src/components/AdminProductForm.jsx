@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { PRODUCTS_API_URL } from '../utils/api'
 import './AdminProductForm.css'
 
@@ -11,11 +12,12 @@ const valoresIniciales = {
   imagenUrl: '',
 }
 
-export default function AdminProductForm() {
+export default function AdminProductForm({ onSuccess }) {
   const [values, setValues] = useState(valoresIniciales)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [feedback, setFeedback] = useState(null)
   const submitLock = useRef(false)
+  const navigate = useNavigate()
 
   function handleChange(event) {
     const { name, value } = event.target
@@ -80,7 +82,8 @@ export default function AdminProductForm() {
       }
 
       setValues(valoresIniciales)
-      setFeedback({ type: 'success', message: `El producto “${nombre}” se creó correctamente.` })
+      onSuccess?.(`El producto “${nombre}” se creó correctamente.`)
+      navigate('/productos')
     } catch (error) {
       setFeedback({
         type: 'error',
