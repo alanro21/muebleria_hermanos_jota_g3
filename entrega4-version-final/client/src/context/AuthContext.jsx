@@ -1,8 +1,7 @@
 import { createContext, useContext, useState } from 'react'
+import { AUTH_API_URL } from '../utils/api'
 
 const AuthContext = createContext(null)
-
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000/api'
 
 function readStoredUser() {
   try {
@@ -39,7 +38,7 @@ export function AuthProvider({ children }) {
   async function login({ email, password }) {
     setAuthLoading(true)
     try {
-      const res = await fetch(`${API_BASE}/auth/login`, {
+      const res = await fetch(`${AUTH_API_URL}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -47,11 +46,10 @@ export function AuthProvider({ children }) {
 
       const data = await res.json()
       if (!res.ok) {
-        throw new Error(data.message || data.error || 'Credenciales inválidas')
+        throw new Error(data.error || 'Credenciales incorrectas')
       }
 
-      const usuario = data.user || data.usuario || { email }
-      guardarSesion(data.token, usuario)
+      guardarSesion(data.token, data.user)
       return data
     } finally {
       setAuthLoading(false)
@@ -61,7 +59,7 @@ export function AuthProvider({ children }) {
   async function register({ nombre, email, password }) {
     setAuthLoading(true)
     try {
-      const res = await fetch(`${API_BASE}/auth/registro`, {
+      const res = await fetch(`${AUTH_API_URL}/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ nombre, email, password }),
@@ -69,12 +67,7 @@ export function AuthProvider({ children }) {
 
       const data = await res.json()
       if (!res.ok) {
-        throw new Error(data.message || data.error || 'No se pudo completar el registro')
-      }
-
-      if (data.token) {
-        const usuario = data.user || data.usuario || { nombre, email }
-        guardarSesion(data.token, usuario)
+        throw new Error(data.error || 'Error al registrar el usuario')
       }
 
       return data

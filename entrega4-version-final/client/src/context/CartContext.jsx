@@ -1,10 +1,9 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { addToCart, changeQuantity, cartTotals, readCart } from '../utils/cart'
+import { ORDERS_API_URL } from '../utils/api'
 import { useAuth } from './AuthContext'
 
 const CartContext = createContext(null)
-
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000/api'
 
 export function CartProvider({ children }) {
   const [carrito, setCarrito] = useState(readCart)
@@ -17,6 +16,7 @@ export function CartProvider({ children }) {
     try {
       localStorage.setItem('jota-carrito', JSON.stringify(carrito))
     } catch {
+
     }
   }, [carrito])
 
@@ -36,7 +36,9 @@ export function CartProvider({ children }) {
   }
 
   function eliminarProducto(id) {
-    setCarrito((actual) => actual.filter((item) => (item.id ?? item._id) !== id))
+    setCarrito((actual) =>
+      actual.filter((item) => (item.id ?? item._id) !== id)
+    )
   }
 
   function vaciarCarrito() {
@@ -52,17 +54,15 @@ export function CartProvider({ children }) {
       throw new Error('Tu carrito está vacío.')
     }
 
-    const res = await fetch(`${API_BASE}/pedidos`, {
+    const res = await fetch(ORDERS_API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        items: carrito.map((item) => ({
-          productoId: item._id || item.id,
-          nombre: item.nombre,
-          precio: item.precio,
+        productos: carrito.map((item) => ({
+          producto: item._id || item.id,
           cantidad: item.cantidad,
         })),
       }),
@@ -70,7 +70,7 @@ export function CartProvider({ children }) {
 
     const data = await res.json()
     if (!res.ok) {
-      throw new Error(data.message || data.error || 'No se pudo procesar el pedido.')
+      throw new Error(data.error || 'No se pudo procesar el pedido.')
     }
 
     vaciarCarrito()
